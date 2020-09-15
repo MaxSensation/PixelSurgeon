@@ -1,58 +1,43 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    private PlayerActionsScript controls;
+    private PlayerActionsScript _controls;
     [SerializeField] private LayerMask mask;
-    private RaycastHit2D hit; //debug temp
-    private Ray ray; //också debug temp
-
+    
     private void Awake()
     {
-        controls = new PlayerActionsScript();
+        _controls = new PlayerActionsScript();
     }
 
     private void OnEnable()
     {
-        controls.Enable();
+        _controls.Enable();
     }
 
     private void OnDisable()
     {
-        controls.Disable();
+        _controls.Disable();
     }
 
     private void Start()
     {
-        controls.Player.Drag.performed += _ => Drag();
+        _controls.Player.Click.performed += _ => Click();
     }
 
-    private void Drag()
+    private void Click()
     {
-        Vector2 mousePosition = controls.Player.Mouseposition.ReadValue<Vector2>();
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        ray = Camera.main.ScreenPointToRay(mousePosition);
-        Debug.Log(mousePosition);
-        hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero);
-        if (hit.collider != null)
-            Debug.Log("Target Position: " + hit.collider.gameObject.transform.position);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Vector2 mousePosition = controls.Player.Mouseposition.ReadValue<Vector2>();
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        mousePosition.y = -mousePosition.y;
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(mousePosition, new Vector3(mousePosition.x, mousePosition.y, 2f));
+        Vector2 mousePosition = _controls.Player.Mouseposition.ReadValue<Vector2>();
+        Vector2 worldPoint = Camera.main.ScreenToWorldPoint(mousePosition);
+        var hit = Physics2D.Raycast(worldPoint, Vector2.zero);
         if (hit.collider)
         {
-            Gizmos.color = Color.green;
-            Gizmos.DrawRay(mousePosition, hit.point.normalized);
-            Debug.Log("hit");
+            Debug.Log(hit.collider.name);
         }
     }
 }

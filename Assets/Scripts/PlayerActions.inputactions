@@ -1,12 +1,12 @@
 {
-    "name": "PlayerControls",
+    "name": "PlayerActions",
     "maps": [
         {
             "name": "Player",
             "id": "9e9675df-74a7-4154-ae83-b9fdec823278",
             "actions": [
                 {
-                    "name": "Drag",
+                    "name": "Click",
                     "type": "PassThrough",
                     "id": "af00327d-ca44-4e0f-b216-3c0b19672261",
                     "expectedControlType": "Button",
@@ -30,7 +30,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "controls",
-                    "action": "Drag",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

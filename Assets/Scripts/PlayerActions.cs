@@ -19,7 +19,7 @@ public class @PlayerActionsScript : IInputActionCollection, IDisposable
             ""id"": ""9e9675df-74a7-4154-ae83-b9fdec823278"",
             ""actions"": [
                 {
-                    ""name"": ""Drag"",
+                    ""name"": ""Click"",
                     ""type"": ""PassThrough"",
                     ""id"": ""af00327d-ca44-4e0f-b216-3c0b19672261"",
                     ""expectedControlType"": ""Button"",
@@ -43,7 +43,7 @@ public class @PlayerActionsScript : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""controls"",
-                    ""action"": ""Drag"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -77,7 +77,7 @@ public class @PlayerActionsScript : IInputActionCollection, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Drag = m_Player.FindAction("Drag", throwIfNotFound: true);
+        m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
         m_Player_Mouseposition = m_Player.FindAction("Mouseposition", throwIfNotFound: true);
     }
 
@@ -128,13 +128,13 @@ public class @PlayerActionsScript : IInputActionCollection, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Drag;
+    private readonly InputAction m_Player_Click;
     private readonly InputAction m_Player_Mouseposition;
     public struct PlayerActions
     {
         private @PlayerActionsScript m_Wrapper;
         public PlayerActions(@PlayerActionsScript wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Drag => m_Wrapper.m_Player_Drag;
+        public InputAction @Click => m_Wrapper.m_Player_Click;
         public InputAction @Mouseposition => m_Wrapper.m_Player_Mouseposition;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -145,9 +145,9 @@ public class @PlayerActionsScript : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Drag.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrag;
-                @Drag.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrag;
-                @Drag.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDrag;
+                @Click.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClick;
                 @Mouseposition.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseposition;
                 @Mouseposition.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseposition;
                 @Mouseposition.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseposition;
@@ -155,9 +155,9 @@ public class @PlayerActionsScript : IInputActionCollection, IDisposable
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Drag.started += instance.OnDrag;
-                @Drag.performed += instance.OnDrag;
-                @Drag.canceled += instance.OnDrag;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
                 @Mouseposition.started += instance.OnMouseposition;
                 @Mouseposition.performed += instance.OnMouseposition;
                 @Mouseposition.canceled += instance.OnMouseposition;
@@ -176,7 +176,7 @@ public class @PlayerActionsScript : IInputActionCollection, IDisposable
     }
     public interface IPlayerActions
     {
-        void OnDrag(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
         void OnMouseposition(InputAction.CallbackContext context);
     }
 }
