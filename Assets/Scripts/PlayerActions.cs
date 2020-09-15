@@ -24,7 +24,7 @@ public class @PlayerActionsScript : IInputActionCollection, IDisposable
                     ""id"": ""af00327d-ca44-4e0f-b216-3c0b19672261"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=1)""
                 },
                 {
                     ""name"": ""Mouseposition"",
