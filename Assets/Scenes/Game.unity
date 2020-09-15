@@ -214,7 +214,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 133403241}
-  - component: {fileID: 133403240}
   m_Layer: 0
   m_Name: Tools
   m_TagString: Untagged
@@ -222,18 +221,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &133403240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133403239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7df6b7a7da68ff4d9c8a375970998da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &133403241
 Transform:
   m_ObjectHideFlags: 0
@@ -2684,8 +2671,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 20
+  m_UseAutoMass: 1
+  m_Mass: 22.97959
   m_LinearDrag: 1
   m_AngularDrag: 3
   m_GravityScale: 0
@@ -2747,7 +2734,7 @@ GameObject:
   - component: {fileID: 2070918844}
   - component: {fileID: 2070918845}
   - component: {fileID: 2070918846}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Saw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2896,8 +2883,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 20
+  m_UseAutoMass: 1
+  m_Mass: 21.462685
   m_LinearDrag: 1
   m_AngularDrag: 3
   m_GravityScale: 0
