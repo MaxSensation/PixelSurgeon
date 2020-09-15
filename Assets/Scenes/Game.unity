@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 481347269}
   - component: {fileID: 481347268}
   - component: {fileID: 481347267}
+  - component: {fileID: 481347270}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -319,6 +320,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &481347270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481347266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bc2b7f73fd659442a3f9bdc36b0b729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
+  gameobject: {fileID: 2070918843}
 --- !u!1 &587804748
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,8 +501,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2070918844}
+  m_Children: []
   m_Father: {fileID: 1953752917}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2672,7 +2688,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 22.97959
+  m_Mass: 21.904785
   m_LinearDrag: 1
   m_AngularDrag: 3
   m_GravityScale: 0
@@ -2748,12 +2764,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070918843}
-  m_LocalRotation: {x: 0.38268343, y: -0.92387956, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalRotation: {x: 0.38268343, y: -0.92387956, z: -0, w: 0}
+  m_LocalPosition: {x: 12, y: 1.5, z: 1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
-  m_Father: {fileID: 837275652}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: -45}
 --- !u!212 &2070918845
 SpriteRenderer:
