@@ -2,8 +2,8 @@
 
 public class SurgenTableMover : MonoBehaviour
 {
-    [SerializeField] private float force;
-    [SerializeField] private MoveDirection moveDirection;
+    [SerializeField] private float force = default;
+    [SerializeField] private MoveDirection moveDirection = default;
     private Rigidbody2D _rigidbody2D;
 
     private enum MoveDirection

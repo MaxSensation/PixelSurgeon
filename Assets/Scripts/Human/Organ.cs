@@ -6,8 +6,9 @@ namespace Human
     [ExecuteInEditMode]
     public class Organ : MonoBehaviour
     {
-        [SerializeField] private string name;
+        [SerializeField] private string organName;
         [TextArea] [SerializeField] private string description, bodyFunction;
+        [SerializeField] private int bloodLostPerSecond = default;
         [SerializeField]private Vector2 wantedPosition;
         private PolygonCollider2D _col;
         private Rigidbody2D _rigidbody2D;
@@ -51,6 +52,11 @@ namespace Human
         public float GetGoalDistance()
         {
             return Vector2.Distance(transform.position, _pixelMan.transform.TransformPoint(wantedPosition));
+        }
+
+        public int GetBloodLostAmount()
+        {
+            return bloodLostPerSecond;
         }
     }
 }
