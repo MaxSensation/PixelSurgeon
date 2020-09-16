@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private Button startButton, quit;
-    [SerializeField] private string sceneToLoad;
+    [SerializeField] private Button startButton = default, quit = default;
+    [SerializeField] private string sceneToLoad = default;
     private void Start()
     {
         startButton.onClick.AddListener(LoadGame);
