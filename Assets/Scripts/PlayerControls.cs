@@ -37,8 +37,11 @@ public class PlayerControls : MonoBehaviour
         _controls.Player.Click.started += _ => Click();
         _controls.Player.Click.performed += _ =>
         {
-            _isHolding = false;
-            _heldObj.transform.localScale = new Vector3(1f, 1f, 1f); ;
+            if (_heldObj != null)
+            {
+                _isHolding = false;
+                _heldObj.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
         };
     }
 
