@@ -11,7 +11,7 @@ public class PlayerControls : MonoBehaviour
     private PlayerActionsScript _controls;
     private bool _isHolding;
     private GameObject _heldObj;
-    private float _startPosX, _startPosY;
+    private float _startPosX, _startPosY = 0;
     private Camera _camera;
     private Vector2 _mousePos;
 
@@ -49,11 +49,12 @@ public class PlayerControls : MonoBehaviour
     {
         _mousePos = _controls.Player.Mouseposition.ReadValue<Vector2>();
         _mousePos = _camera.ScreenToWorldPoint(_mousePos);
-        var hit = Physics2D.Raycast(_mousePos, Vector2.zero, 0f, mask);
-        if (hit.collider != null)
+        RaycastHit2D[] hits = Physics2D.RaycastAll(_mousePos, Vector2.zero, 0f, mask);
+
+        if (hits.Length > 0)
         {
-            _isHolding = true;
-            _heldObj = hit.collider.gameObject;
+            _heldObj = hits.OrderByDescending(item => item.transform.GetComponentInChildren<SpriteRenderer>()?.sortingOrder).First().transform.gameObject;
+
             if (_heldObj.layer == 9) //layer 9 == Organs
             {
                 _startPosX = _mousePos.x - _heldObj.transform.position.x;
@@ -65,7 +66,9 @@ public class PlayerControls : MonoBehaviour
                 _startPosY = 0;
             }
             _heldObj.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            _isHolding = true;
         }
+
     }
 
     private void Update()
