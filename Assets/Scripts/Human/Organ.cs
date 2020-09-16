@@ -9,25 +9,23 @@ namespace Human
         [SerializeField] private string organName;
         [TextArea] [SerializeField] private string description, bodyFunction;
         [SerializeField] private int bloodLostPerSecond = default;
+        [SerializeField] internal bool badOrgan = default;
+        [SerializeField] private Color badOrganColor;
         [SerializeField]private Vector2 wantedPosition;
         private PolygonCollider2D _col;
-        private Rigidbody2D _rigidbody2D;
         private GameObject _pixelMan;
         private void Start()
         {
             _pixelMan = FindObjectOfType<PixelMan>().gameObject;
             _col = GetComponent<PolygonCollider2D>();
-            _rigidbody2D = GetComponent<Rigidbody2D>();
+            GetComponentInChildren<SpriteRenderer>().color = badOrgan ? badOrganColor : Color.white;
         }
 
-        private void OnTriggerStay2D(Collider2D other)
+        public string getOrganName()
         {
-            if (other.CompareTag("Table"))
-            {
-                _rigidbody2D.velocity = other.GetComponent<Rigidbody2D>().velocity;
-            }
+            return organName;
         }
-        
+
         public void SetCorrectPosition()
         {
             _pixelMan = FindObjectOfType<PixelMan>().gameObject;

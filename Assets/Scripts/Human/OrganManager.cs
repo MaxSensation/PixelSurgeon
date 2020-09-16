@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Human;
 using UnityEngine;
 
 public class OrganManager : MonoBehaviour
 {
-    [SerializeField] private List<Organ> organs = default;
+    [SerializeField] private List<Organ> goodOrgans, badOrgans = default;
     [SerializeField] private int maxScorePerOrgan = default;
     [SerializeField] private int startBlood = default;
     private int _currentBlood;
@@ -33,7 +34,7 @@ public class OrganManager : MonoBehaviour
     private int GetOrganScore()
     {
         _currentScore = maxScorePerOrgan;
-        foreach (var organ in organs)
+        foreach (var organ in goodOrgans)
         {
             var percentage = 100f - 100 * Mathf.Clamp01(organ.GetGoalDistance()-0.1f); 
             Debug.Log(organ.name + " PositionPlacement: " + percentage + " from perfect position.");
@@ -45,11 +46,22 @@ public class OrganManager : MonoBehaviour
     private int GetBloodLostAmount()
     {
         var lostBlood = 0;
-        foreach (var organ in organs)
+        float goodOrganPercentage = 0, badOrganPercentage = 0;
+        foreach (var goodOrgan in goodOrgans)
         {
-            var percentage = 100f - 100 * Mathf.Clamp01(organ.GetGoalDistance()-0.1f);
-            if (!(percentage < 90)) continue;
-            lostBlood += organ.GetBloodLostAmount();
+            goodOrganPercentage = 100f - 100 * Mathf.Clamp01(goodOrgan.GetGoalDistance()-0.1f);
+            if (badOrgans.Any(badorgan => badorgan.getOrganName() == goodOrgan.getOrganName()))
+            {
+                var organ = badOrgans.Where(badOrgan => badOrgan.getOrganName() == goodOrgan.name).ToArray()[0];
+                badOrganPercentage = 100f - 100 * Mathf.Clamp01(organ.GetGoalDistance()-0.1f);
+                if (!(goodOrganPercentage > 90 || badOrganPercentage > 90))
+                    lostBlood += goodOrgan.GetBloodLostAmount();
+            }
+            else
+            {
+                if (!(goodOrganPercentage > 90))
+                    lostBlood += goodOrgan.GetBloodLostAmount();   
+            }
         }
 
         return lostBlood;
