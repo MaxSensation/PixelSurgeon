@@ -7,13 +7,13 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    [SerializeField] private LayerMask mask;
+    [SerializeField] private LayerMask mask = default;
     private PlayerActionsScript _controls;
     private bool _isHolding;
     private GameObject _heldObj;
     private float _startPosX, _startPosY;
     private Camera _camera;
-    private Vector2 _mousePosition;
+    private Vector2 _mousePos;
 
     private void Awake()
     {
@@ -35,21 +35,33 @@ public class PlayerControls : MonoBehaviour
     private void Start()
     {
         _controls.Player.Click.started += _ => Click();
-        _controls.Player.Click.performed += _ => _isHolding = false;
+        _controls.Player.Click.performed += _ =>
+        {
+            _isHolding = false;
+            _heldObj.transform.localScale = new Vector3(1f, 1f, 1f); ;
+        };
     }
 
     private void Click()
     {
-        _mousePosition = _controls.Player.Mouseposition.ReadValue<Vector2>();
-        _mousePosition = _camera.ScreenToWorldPoint(_mousePosition);
-        var hit = Physics2D.Raycast(_mousePosition, Vector2.zero, 0f, mask);
+        _mousePos = _controls.Player.Mouseposition.ReadValue<Vector2>();
+        _mousePos = _camera.ScreenToWorldPoint(_mousePos);
+        var hit = Physics2D.Raycast(_mousePos, Vector2.zero, 0f, mask);
         if (hit.collider != null)
         {
             _isHolding = true;
             _heldObj = hit.collider.gameObject;
-            _startPosX = _mousePosition.x - _heldObj.transform.position.x;
-            _startPosY = _mousePosition.y - _heldObj.transform.position.y;
-
+            if (_heldObj.layer == 9) //layer 9 == Organs
+            {
+                _startPosX = _mousePos.x - _heldObj.transform.position.x;
+                _startPosY = _mousePos.y - _heldObj.transform.position.y;
+            }
+            else if (_heldObj.layer == 8) //layer 8 == Tools
+            {
+                _startPosX = 0;
+                _startPosY = 0;
+            }
+            _heldObj.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
         }
     }
 
@@ -57,9 +69,15 @@ public class PlayerControls : MonoBehaviour
     {
         if (_isHolding)
         {
-            _mousePosition = _controls.Player.Mouseposition.ReadValue<Vector2>();
-            _mousePosition = _camera.ScreenToWorldPoint(_mousePosition);
-            _heldObj.transform.position = new Vector3(_mousePosition.x - _startPosX, _mousePosition.y - _startPosY, 0);
+            HoldObj();
         }
     }
+
+    private void HoldObj()
+    {
+        _mousePos = _controls.Player.Mouseposition.ReadValue<Vector2>();
+        _mousePos = _camera.ScreenToWorldPoint(_mousePos);
+        _heldObj.transform.position = new Vector3(_mousePos.x - _startPosX, _mousePos.y - _startPosY, 0);
+    }
+
 }
