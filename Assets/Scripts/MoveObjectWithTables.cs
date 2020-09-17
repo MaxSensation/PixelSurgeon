@@ -10,20 +10,17 @@ public class MoveObjectWithTables : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _organ = GetComponent<Organ>();
-        if (_organ != null)
-            _isOrgan = true;
+        if (_organ != null) _isOrgan = true;
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (_isOrgan)
-        {
+        if (_isOrgan){
             if (_organ.IsAttached() && other.CompareTag("PixelMan"))
                 _rigidbody2D.velocity = other.GetComponent<Rigidbody2D>().velocity;
-            else if (!_organ.IsAttached() && other.CompareTag("Table"))
-                _rigidbody2D.velocity = other.GetComponent<Rigidbody2D>().velocity;
+            if (_organ.IsAttached()) return;
         }
-        else
+        if (other.CompareTag("PixelMan") || other.CompareTag("Table"))
             _rigidbody2D.velocity = other.GetComponent<Rigidbody2D>().velocity;
     }
 }

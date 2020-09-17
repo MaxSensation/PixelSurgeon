@@ -7,7 +7,7 @@ using UnityEngine;
 public class BloodMonitor : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI bloodAmountText = default;
-    public Action<int> OnBloodLost;
+    public Action<int, int> OnBloodLost;
 
 
     private void Start()
@@ -15,8 +15,8 @@ public class BloodMonitor : MonoBehaviour
         OnBloodLost += SetBloodAmount;
     }
 
-    private void SetBloodAmount(int amount)
+    private void SetBloodAmount(int amount, int minimum)
     {
-        bloodAmountText.SetText(amount + "ml");
+        bloodAmountText.SetText("cur: "+ amount + "ml" + "\n" + "min: " + minimum + "ml");
     }
 }
