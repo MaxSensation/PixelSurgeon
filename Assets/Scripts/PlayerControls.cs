@@ -2,11 +2,12 @@
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using Human;
 
 public class PlayerControls : MonoBehaviour
 {
     [SerializeField] private LayerMask mask = default;
-    public static Action cutSkinEvent, sewnSkinEvent;
+    public static Action<GameObject> OnCutEvent, OnSawEvent, OnSewnEvent, OnDropOrganEvent;
     private PlayerActionsScript _controls;
     private bool _isHolding;
     private GameObject _heldObj;
@@ -35,8 +36,8 @@ public class PlayerControls : MonoBehaviour
 
     private void Start()
     {
-        _controls.Player.LeftClick.started += _ => Click();
         _controls.Player.Scroll.performed += ctx => { if (_isHolding && _heldObj.layer == 8) Rotate(ctx); };
+        _controls.Player.LeftClick.started += _ => Click();
         _controls.Player.LeftClick.performed += _ =>
         {
             if (_heldObj != null)
@@ -44,12 +45,32 @@ public class PlayerControls : MonoBehaviour
                 _isHolding = false;
                 _heldObj.transform.localScale = new Vector3(1f, 1f, 1f);
                 _heldObjSpriteRen.sortingOrder = _oldSortOrder;
+                if (_heldObj.layer == 9)
+                    OnDropOrganEvent?.Invoke(_heldObj);
             }
         };
+        _controls.Player.RightClick.performed += _ => RightClick(); //TODO: If held object Saw 
     }
 
-    //TODO: ändra så att du måste kolla IsAttached på organ så att du inte kan ta upp organ som sitter fast. 
-    //OM du släpper organ sätt igång ett event kallat; OnDropOrgan, när man cuttar med såg OnSawEvent.
+    private void RightClick()
+    {
+        if (_heldObj == null) return;
+        //switch (_heldObj.name)
+        //{
+        //    case "Saw":
+        //        OnSawEvent?.Invoke(_heldObj.GetComponent<Tool>().GetOrgan());
+        //        break;
+        //    case "Scalpel":
+        //        OnCutEvent?.Invoke(_heldObj.GetComponent<Tool>().GetOrgan());
+        //        break;
+        //    case "Sewingkit":
+        //        OnSewnEvent?.Invoke(_heldObj.GetComponent<Tool>().GetOrgan());
+        //        break;
+        //}
+        Debug.Log("right click");
+    }
+
+    //TODO: när man cuttar med såg OnSawEvent.
     private void Click()
     {
         _mousePos = _controls.Player.Mouseposition.ReadValue<Vector2>();
@@ -66,6 +87,7 @@ public class PlayerControls : MonoBehaviour
             select
                 item
         ).ToArray().First().transform.gameObject;
+        if (_heldObj.layer == 9 && _heldObj.GetComponent<Organ>().IsAttached()) return;
         _heldObjSpriteRen = _heldObj.GetComponentInChildren<SpriteRenderer>();
         _oldSortOrder = _heldObjSpriteRen.sortingOrder;
         _heldObjSpriteRen.sortingOrder = 10;

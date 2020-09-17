@@ -40,10 +40,10 @@ namespace Human
             switch (toolToAttach)
             {
                 case ToolAttach.SewingKit:
-                    //PlayerControls.OnSewnEvent += AttachOrgan();
+                    PlayerControls.OnSewnEvent += AttachOrgan;
                     break;
                 case ToolAttach.None:
-                    //PlayerControls.OnDropOrganEvent += AttachOrgan();
+                    PlayerControls.OnDropOrganEvent += AttachOrgan;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -52,10 +52,10 @@ namespace Human
             switch (toolToDetach)
             {
                 case ToolDetach.Scalpel:
-                    //PlayerControls.OnCutEvent += DetachOrgan();
+                    PlayerControls.OnCutEvent += DetachOrgan;
                     break;
                 case ToolDetach.Saw:
-                    //PlayerControls.OnSawEvent += DetachOrgan();   
+                    PlayerControls.OnSawEvent += DetachOrgan;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
