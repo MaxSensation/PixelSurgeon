@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class OrganManager : MonoBehaviour
 {
-    [SerializeField] private List<Organ> goodOrgans, badOrgans = default;
+    [SerializeField] private List<Organ> goodOrgans = default, badOrgans = default;
     [SerializeField] private int maxScorePerOrgan = default;
     [SerializeField] private int startBlood = default;
     private int _currentBlood;

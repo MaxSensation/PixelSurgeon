@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3305870041473720896}
-  - component: {fileID: 3305870041473720927}
   - component: {fileID: 3305870041473720926}
   - component: {fileID: 3305870041473720897}
   - component: {fileID: 6447339902298636039}
+  - component: {fileID: 2204379613420231505}
   m_Layer: 9
   m_Name: MainSkinFlaps
   m_TagString: Organ
@@ -35,25 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3305870041473720927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3305870041473720899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 232d57c740b2c4845aeed5d815c05093, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  organName: 
-  description: 
-  bodyFunction: 
-  bloodLostPerSecond: 1
-  badOrgan: 0
-  badOrganColor: {r: 0, g: 0, b: 0, a: 0}
-  wantedPosition: {x: 0.03, y: 0.060000002}
 --- !u!60 &3305870041473720926
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -117,6 +98,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fcf20a5d04fc2642986ef20588e5127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2204379613420231505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3305870041473720899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae733e5fbf53cb44fbe016e89a1a351d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3305870042267575083

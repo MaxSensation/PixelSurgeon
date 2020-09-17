@@ -6,11 +6,11 @@ namespace Human
     [ExecuteInEditMode]
     public class Organ : MonoBehaviour
     {
-        [SerializeField] private string organName;
+        [SerializeField] private string organName = default;
         [TextArea] [SerializeField] private string description, bodyFunction;
         [SerializeField] private int bloodLostPerSecond = default;
         [SerializeField] internal bool badOrgan = default;
-        [SerializeField] private Color badOrganColor;
+        [SerializeField] private Color badOrganColor = default;
         [SerializeField]private Vector2 wantedPosition;
         private PolygonCollider2D _col;
         private GameObject _pixelMan;
