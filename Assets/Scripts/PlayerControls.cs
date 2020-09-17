@@ -55,19 +55,18 @@ public class PlayerControls : MonoBehaviour
     private void RightClick()
     {
         if (_heldObj == null) return;
-        //switch (_heldObj.name)
-        //{
-        //    case "Saw":
-        //        OnSawEvent?.Invoke(_heldObj.GetComponent<Tool>().GetOrgan());
-        //        break;
-        //    case "Scalpel":
-        //        OnCutEvent?.Invoke(_heldObj.GetComponent<Tool>().GetOrgan());
-        //        break;
-        //    case "Sewingkit":
-        //        OnSewnEvent?.Invoke(_heldObj.GetComponent<Tool>().GetOrgan());
-        //        break;
-        //}
-        Debug.Log("right click");
+        switch (_heldObj.name)
+        {
+            case "Saw":
+                OnSawEvent?.Invoke(_heldObj.GetComponent<Tool>().GetOrgan());
+                break;
+            case "Scalpel":
+                OnCutEvent?.Invoke(_heldObj.GetComponent<Tool>().GetOrgan());
+                break;
+            case "Sewingkit":
+                OnSewnEvent?.Invoke(_heldObj.GetComponent<Tool>().GetOrgan());
+                break;
+        }
     }
 
     //TODO: när man cuttar med såg OnSawEvent.
