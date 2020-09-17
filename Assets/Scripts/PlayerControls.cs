@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
+﻿using System.Linq;
 using UnityEngine;
+using System;
+
 
 public class PlayerControls : MonoBehaviour
 {
     [SerializeField] private LayerMask mask = default;
+    public static Action cutSkinEvent, sewnSkinEvent;
     private PlayerActionsScript _controls;
     private bool _isHolding;
     private GameObject _heldObj;
     private float _startPosX, _startPosY = 0;
     private Camera _camera;
     private Vector2 _mousePos;
+    private SpriteRenderer _heldObjSpriteRen;
+    private int _oldSortOrder;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class PlayerControls : MonoBehaviour
             {
                 _isHolding = false;
                 _heldObj.transform.localScale = new Vector3(1f, 1f, 1f);
+                _heldObjSpriteRen.sortingOrder = _oldSortOrder;
             }
         };
     }
@@ -54,6 +56,9 @@ public class PlayerControls : MonoBehaviour
         if (hits.Length > 0)
         {
             _heldObj = hits.OrderByDescending(item => item.transform.GetComponentInChildren<SpriteRenderer>()?.sortingOrder).First().transform.gameObject;
+            _heldObjSpriteRen = _heldObj.GetComponentInChildren<SpriteRenderer>();
+            _oldSortOrder = _heldObjSpriteRen.sortingOrder;
+            _heldObjSpriteRen.sortingOrder = 10;
 
             if (_heldObj.layer == 9) //layer 9 == Organs
             {
