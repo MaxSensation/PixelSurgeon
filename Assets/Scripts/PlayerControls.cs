@@ -35,8 +35,8 @@ public class PlayerControls : MonoBehaviour
 
     private void Start()
     {
-        _controls.Player.Click.started += _ => Click();
-        _controls.Player.Click.performed += _ =>
+        _controls.Player.LeftClick.started += _ => Click();
+        _controls.Player.LeftClick.performed += _ =>
         {
             if (_heldObj != null)
             {
@@ -46,7 +46,7 @@ public class PlayerControls : MonoBehaviour
             }
         };
     }
-
+    //TODO: ändra så att du måste kolla IsAttached på organ så att du inte kan ta upp organ som sitter fast. 
     private void Click()
     {
         _mousePos = _controls.Player.Mouseposition.ReadValue<Vector2>();
