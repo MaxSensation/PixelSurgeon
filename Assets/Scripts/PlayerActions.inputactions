@@ -6,7 +6,7 @@
             "id": "9e9675df-74a7-4154-ae83-b9fdec823278",
             "actions": [
                 {
-                    "name": "Click",
+                    "name": "LeftClick",
                     "type": "PassThrough",
                     "id": "af00327d-ca44-4e0f-b216-3c0b19672261",
                     "expectedControlType": "Button",
@@ -20,6 +20,22 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "RightClick",
+                    "type": "PassThrough",
+                    "id": "569f6468-d61a-4136-af65-088618408f82",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
+                },
+                {
+                    "name": "Scroll",
+                    "type": "Value",
+                    "id": "cfed0e53-bd76-4e4c-8a38-31dd4e20a352",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -30,7 +46,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "controls",
-                    "action": "Click",
+                    "action": "LeftClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -42,6 +58,28 @@
                     "processors": "",
                     "groups": "controls",
                     "action": "Mouseposition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3676714-0221-49be-abb7-22fd0b70f7fc",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "controls",
+                    "action": "RightClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77f52d87-f02d-40ef-a50e-be501659cb7d",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "controls",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

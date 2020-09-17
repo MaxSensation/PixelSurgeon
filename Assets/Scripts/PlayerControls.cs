@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 using System;
-
+using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -35,8 +35,9 @@ public class PlayerControls : MonoBehaviour
 
     private void Start()
     {
-        _controls.Player.Click.started += _ => Click();
-        _controls.Player.Click.performed += _ =>
+        _controls.Player.LeftClick.started += _ => Click();
+        _controls.Player.Scroll.performed += ctx => { if (_isHolding && _heldObj.layer == 8) Rotate(ctx); };
+        _controls.Player.LeftClick.performed += _ =>
         {
             if (_heldObj != null)
             {
@@ -47,6 +48,8 @@ public class PlayerControls : MonoBehaviour
         };
     }
 
+    //TODO: ändra så att du måste kolla IsAttached på organ så att du inte kan ta upp organ som sitter fast. 
+    //OM du släpper organ sätt igång ett event kallat; OnDropOrgan, när man cuttar med såg OnSawEvent.
     private void Click()
     {
         _mousePos = _controls.Player.Mouseposition.ReadValue<Vector2>();
@@ -91,4 +94,11 @@ public class PlayerControls : MonoBehaviour
         _heldObj.transform.position = new Vector3(_mousePos.x - _startPosX, _mousePos.y - _startPosY, 0);
     }
 
+    private void Rotate(InputAction.CallbackContext ctx)
+    {
+        if (ctx.ReadValue<Vector2>().y > 0)
+            _heldObj.transform.Rotate(Vector3.forward, 90f);
+        else
+            _heldObj.transform.Rotate(Vector3.forward, -90f);
+    }
 }
