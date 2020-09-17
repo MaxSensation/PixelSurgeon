@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
 
 namespace Human
@@ -8,12 +10,27 @@ namespace Human
     {
         [SerializeField] private string organName = default;
         [TextArea] [SerializeField] private string description, bodyFunction;
+        [SerializeField] private bool isAttached = default;
+        [SerializeField] private ToolAttach toolToAttach;
+        [SerializeField] private ToolDetach toolToDetach;
         [SerializeField] private int bloodLostPerSecond = default;
         [SerializeField] internal bool badOrgan = default;
         [SerializeField] private Color badOrganColor = default;
         [SerializeField]private Vector2 wantedPosition;
         private PolygonCollider2D _col;
         private GameObject _pixelMan;
+
+        private enum ToolDetach
+        {
+            Scalpel,
+            Saw
+        }
+        
+        private enum ToolAttach
+        {
+            SewingKit
+        }
+        
         private void Start()
         {
             _pixelMan = FindObjectOfType<PixelMan>().gameObject;
@@ -21,7 +38,7 @@ namespace Human
             GetComponentInChildren<SpriteRenderer>().color = badOrgan ? badOrganColor : Color.white;
         }
 
-        public string getOrganName()
+        public string GetOrganName()
         {
             return organName;
         }
@@ -55,6 +72,11 @@ namespace Human
         public int GetBloodLostAmount()
         {
             return bloodLostPerSecond;
+        }
+
+        public bool IsAttached()
+        {
+            return isAttached;
         }
     }
 }

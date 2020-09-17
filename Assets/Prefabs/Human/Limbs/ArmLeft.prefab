@@ -50,6 +50,9 @@ MonoBehaviour:
   organName: 
   description: 
   bodyFunction: 
+  isAttached: 1
+  toolToAttach: 0
+  toolToDetach: 1
   bloodLostPerSecond: 50
   badOrgan: 0
   badOrganColor: {r: 0, g: 0, b: 0, a: 0}
