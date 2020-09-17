@@ -5,7 +5,6 @@ public class SkinFlaps : MonoBehaviour
         [SerializeField] private GameObject openFlaps = default, closedFlaps = default;
         private void Start()
         {
-                //Listen for events
                 //PlayerControls.OnCutEvent += CheckKnifeEvent;
                 //PlayerControls.OnSewnEvent += CheckSewnEvent;
         }

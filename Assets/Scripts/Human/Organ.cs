@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Packages.Rider.Editor.UnitTesting;
 using UnityEngine;
 
 namespace Human
@@ -11,8 +10,8 @@ namespace Human
         [SerializeField] private string organName = default;
         [TextArea] [SerializeField] private string description, bodyFunction;
         [SerializeField] private bool isAttached = default;
-        [SerializeField] private ToolAttach toolToAttach;
-        [SerializeField] private ToolDetach toolToDetach;
+        [SerializeField] private ToolAttach toolToAttach = default;
+        [SerializeField] private ToolDetach toolToDetach = default;
         [SerializeField] private int bloodLostPerSecond = default;
         [SerializeField] internal bool badOrgan = default;
         [SerializeField] private Color badOrganColor = default;
@@ -28,6 +27,7 @@ namespace Human
         
         private enum ToolAttach
         {
+            None,
             SewingKit
         }
         
@@ -36,6 +36,30 @@ namespace Human
             _pixelMan = FindObjectOfType<PixelMan>().gameObject;
             _col = GetComponent<PolygonCollider2D>();
             GetComponentInChildren<SpriteRenderer>().color = badOrgan ? badOrganColor : Color.white;
+            
+            switch (toolToAttach)
+            {
+                case ToolAttach.SewingKit:
+                    //PlayerControls.OnSewnEvent += AttachOrgan();
+                    break;
+                case ToolAttach.None:
+                    //PlayerControls.OnDropOrganEvent += AttachOrgan();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            switch (toolToDetach)
+            {
+                case ToolDetach.Scalpel:
+                    //PlayerControls.OnCutEvent += DetachOrgan();
+                    break;
+                case ToolDetach.Saw:
+                    //PlayerControls.OnSawEvent += DetachOrgan();   
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         public string GetOrganName()
@@ -77,6 +101,19 @@ namespace Human
         public bool IsAttached()
         {
             return isAttached;
+        }
+        
+        private void AttachOrgan(GameObject o)
+        {
+            if (o != gameObject) return;
+            if (100f - 100 * Mathf.Clamp01(GetGoalDistance()-0.1f) > 90)
+                isAttached = true;
+        }
+        
+        private void DetachOrgan(GameObject o)
+        {
+            if (o != gameObject) return;
+            isAttached = false;
         }
     }
 }
