@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3505582477984700488}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.606, y: -2.525, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -50,10 +50,10 @@ MonoBehaviour:
   organName: 
   description: 
   bodyFunction: 
-  bloodLostPerSecond: 0
+  bloodLostPerSecond: 20
   badOrgan: 0
   badOrganColor: {r: 0, g: 0, b: 0, a: 0}
-  wantedPosition: {x: -0.06103205, y: -0.03814503}
+  wantedPosition: {x: 0.08, y: 1.32}
 --- !u!60 &3505582477984700501
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -198,7 +198,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1443600115
   m_SortingLayer: 1
-  m_SortingOrder: 5
+  m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: d87e660ed239f6148be2f6b5aad62022, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
