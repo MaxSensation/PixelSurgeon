@@ -132,13 +132,13 @@ MonoBehaviour:
   organName: Heart
   description: Round red
   bodyFunction: To pump blood around the body
-  isAttached: 1
+  isAttached: 0
   toolToAttach: 0
   toolToDetach: 0
   bloodLostPerSecond: 100
   badOrgan: 0
   badOrganColor: {r: 0, g: 0, b: 0, a: 0}
-  wantedPosition: {x: 0.13, y: 1.24}
+  wantedPosition: {x: 0, y: 1.5120001}
 --- !u!60 &7957296841291831111
 PolygonCollider2D:
   m_ObjectHideFlags: 0
