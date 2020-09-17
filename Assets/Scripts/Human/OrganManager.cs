@@ -62,11 +62,18 @@ public class OrganManager : MonoBehaviour
 
     private int GetBloodLostAmount()
     {
-        return (
-            from goodOrgan in goodOrgans 
-                where !goodOrgan.IsAttached() && badOrgans.Any(badorgan => badorgan.GetOrganName() == goodOrgan.GetOrganName())
-                let badOrgan = badOrgans.Where(organ => organ.GetOrganName() == goodOrgan.name).ToArray()[0] 
-                    where !badOrgan.IsAttached() 
-                    select goodOrgan.GetBloodLostAmount()).Sum();
+        var currentLostBlood = 0;
+        foreach (var goodOrgan in goodOrgans)
+        {
+            if (!goodOrgan.IsAttached() && badOrgans.Any(badorgan => badorgan.GetOrganName() == goodOrgan.GetOrganName()))
+            {
+                var badOrgan = badOrgans.Where(organ => organ.GetOrganName() == goodOrgan.name).ToArray()[0];
+                if (!badOrgan.IsAttached()) 
+                    currentLostBlood += goodOrgan.GetBloodLostAmount();
+            }
+            else if (!goodOrgan.IsAttached())
+                currentLostBlood += goodOrgan.GetBloodLostAmount();
+        }
+        return currentLostBlood;
     }
 }
