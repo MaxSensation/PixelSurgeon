@@ -56,7 +56,7 @@ MonoBehaviour:
   bloodLostPerSecond: 20
   badOrgan: 0
   badOrganColor: {r: 0, g: 0, b: 0, a: 0}
-  wantedPosition: {x: 0.45, y: 0.73}
+  wantedPosition: {x: -0.09, y: 1.37}
 --- !u!60 &4751586179567083999
 PolygonCollider2D:
   m_ObjectHideFlags: 0
