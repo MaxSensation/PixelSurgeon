@@ -50,9 +50,9 @@ public class OrganManager : MonoBehaviour
         foreach (var goodOrgan in goodOrgans)
         {
             goodOrganPercentage = 100f - 100 * Mathf.Clamp01(goodOrgan.GetGoalDistance()-0.1f);
-            if (badOrgans.Any(badorgan => badorgan.getOrganName() == goodOrgan.getOrganName()))
+            if (badOrgans.Any(badorgan => badorgan.GetOrganName() == goodOrgan.GetOrganName()))
             {
-                var organ = badOrgans.Where(badOrgan => badOrgan.getOrganName() == goodOrgan.name).ToArray()[0];
+                var organ = badOrgans.Where(badOrgan => badOrgan.GetOrganName() == goodOrgan.name).ToArray()[0];
                 badOrganPercentage = 100f - 100 * Mathf.Clamp01(organ.GetGoalDistance()-0.1f);
                 if (!(goodOrganPercentage > 90 || badOrganPercentage > 90))
                     lostBlood += goodOrgan.GetBloodLostAmount();
