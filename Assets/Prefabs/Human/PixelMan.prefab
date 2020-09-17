@@ -163,9 +163,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6990521200233758885}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: UpperLowerSkinFlaps
-  m_TagString: Organ
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,7 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6990521201590917351}
   - component: {fileID: 6990521201590917336}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3305870041473720899, guid: 06c383f1ef6eb55449e6c80d0142eeb9, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Organ
       objectReference: {fileID: 0}
     - target: {fileID: 3305870042267575083, guid: 06c383f1ef6eb55449e6c80d0142eeb9, type: 3}
       propertyPath: m_Name
