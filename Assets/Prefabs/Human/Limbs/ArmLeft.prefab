@@ -52,7 +52,7 @@ MonoBehaviour:
   bodyFunction: 
   isAttached: 1
   toolToAttach: 1
-  toolToDetach: 1
+  toolToDetach: 2
   bloodLostPerSecond: 2
   badOrgan: 0
   badOrganColor: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
@@ -204,7 +204,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1443600115
   m_SortingLayer: 1
-  m_SortingOrder: 9
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1819913757a585b4fa4f3db4dd6a3718, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

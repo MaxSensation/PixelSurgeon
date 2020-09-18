@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1568558976423547191}
   - component: {fileID: 461528698927742115}
+  - component: {fileID: 630357473}
   m_Layer: 9
   m_Name: OpenFlaps
-  m_TagString: Untagged
+  m_TagString: Flap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1568558976423547191
 Transform:
   m_ObjectHideFlags: 0
@@ -42,7 +43,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -57,21 +58,37 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.02, y: 2.8999999}
-      - {x: -1.0376936, y: 0.1180722}
-      - {x: -1.0482756, y: -0.22254086}
-      - {x: -0.1333481, y: -0.19822428}
-      - {x: -0.12250616, y: 0.034365788}
-      - {x: -0.84850836, y: 0.021160021}
-      - {x: -0.8566631, y: 0.6688818}
-      - {x: -0.84781647, y: 1.2521833}
-      - {x: -0.832561, y: 2.6457915}
-      - {x: 0.60677284, y: 2.6167943}
-      - {x: 0.6411436, y: 0.07035068}
-      - {x: -0.095013246, y: 0.01912421}
-      - {x: -0.10376844, y: -0.19744703}
-      - {x: 0.7568404, y: -0.21202826}
-      - {x: 0.8042345, y: 2.8557656}
+    - - {x: 0.811243, y: 0.073592365}
+      - {x: -1.0192281, y: 0.07378134}
+      - {x: -0.98141253, y: 2.9577644}
+      - {x: 0.7755439, y: 2.9763956}
+      - {x: 0.7823607, y: 3.0042264}
+      - {x: -1.004739, y: 2.972153}
+      - {x: -1.0446389, y: 0.039425477}
+      - {x: 0.8429116, y: 0.039425552}
+      - {x: 0.79555404, y: 3.0082889}
+--- !u!114 &630357473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568558976423547188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232d57c740b2c4845aeed5d815c05093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  organName: 
+  description: 
+  bodyFunction: 
+  isAttached: 1
+  toolToAttach: 0
+  toolToDetach: 0
+  bloodLostPerSecond: 0
+  badOrgan: 0
+  badOrganColor: {r: 0, g: 0, b: 0, a: 0}
+  wantedPosition: {x: 0, y: 0}
 --- !u!1 &1568558977240436828
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,6 +99,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1568558977240436831}
   - component: {fileID: 2788832944721602894}
+  - component: {fileID: 1844519269}
+  - component: {fileID: 1844519268}
   m_Layer: 0
   m_Name: MainSkinFlaps
   m_TagString: Untagged
@@ -96,7 +115,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568558977240436828}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.03, y: 0.060000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -119,6 +138,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openFlaps: {fileID: 1568558976423547188}
   closedFlaps: {fileID: 4879281616452186301}
+--- !u!50 &1844519269
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568558977240436828}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1844519268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568558977240436828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 801bb112a20e9ba458e44c9ebd5add3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  table: {fileID: 0}
 --- !u!1 &4879281616452186301
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,9 +182,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4217859359456774941}
   - component: {fileID: 7559649738232065911}
+  - component: {fileID: 1834641530}
   m_Layer: 9
   m_Name: ClosedFlaps
-  m_TagString: Untagged
+  m_TagString: Flap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,6 +236,28 @@ PolygonCollider2D:
       - {x: 0.78, y: 0.19999999}
       - {x: 0.78, y: 2.8799999}
       - {x: 0.76, y: 2.8999999}
+--- !u!114 &1834641530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4879281616452186301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 232d57c740b2c4845aeed5d815c05093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  organName: 
+  description: 
+  bodyFunction: 
+  isAttached: 1
+  toolToAttach: 0
+  toolToDetach: 0
+  bloodLostPerSecond: 0
+  badOrgan: 0
+  badOrganColor: {r: 0, g: 0, b: 0, a: 0}
+  wantedPosition: {x: 0, y: 0}
 --- !u!1 &6628336638368835015
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +410,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1443600115
   m_SortingLayer: 1
-  m_SortingOrder: 10
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9377c9c5c4648cb4d87325fc508802c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
