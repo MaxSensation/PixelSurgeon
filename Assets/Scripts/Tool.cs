@@ -5,7 +5,6 @@ using UnityEngine;
 public class Tool : MonoBehaviour
 {
     [SerializeField] private ContactFilter2D contactFilter = default;
-    [SerializeField] private LayerMask mask = default;
     private PolygonCollider2D _collider;
     private List<Collider2D> _overlapResults;
 
@@ -26,11 +25,9 @@ public class Tool : MonoBehaviour
                     item in _overlapResults
                 orderby
                     item.transform.GetChild(0).GetComponent<SpriteRenderer>()?.sortingOrder descending
-                where 
-                    mask == (mask | (1 << item.transform.gameObject.layer))
                 select
-                    item
-            ).ToArray().First().transform.gameObject;
+                    item.transform.gameObject
+            ).ToArray().First();
         }
         return null;
     }
