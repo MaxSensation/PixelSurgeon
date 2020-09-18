@@ -8,10 +8,10 @@ public class Tool : MonoBehaviour
     private PolygonCollider2D _collider;
     private List<Collider2D> _overlapResults;
 
-    void Start()
+    private void Start()
     {
         _overlapResults = new List<Collider2D>();
-        _collider = GetComponentInChildren<PolygonCollider2D>();
+        _collider = transform.GetChild(1).GetComponent<PolygonCollider2D>();
     }
 
     public GameObject GetOrgan()
@@ -24,10 +24,10 @@ public class Tool : MonoBehaviour
                 from
                     item in _overlapResults
                 orderby
-                    item.gameObject.GetComponentInChildren<SpriteRenderer>()?.sortingOrder descending
+                    item.transform.GetChild(0).GetComponent<SpriteRenderer>()?.sortingOrder descending
                 select
-                    item
-            ).ToArray().First().transform.gameObject;
+                    item.transform.gameObject
+            ).ToArray().First();
         }
         return null;
     }

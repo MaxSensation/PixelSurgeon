@@ -51,7 +51,7 @@ MonoBehaviour:
   description: 
   bodyFunction: 
   isAttached: 1
-  toolToAttach: 0
+  toolToAttach: 1
   toolToDetach: 0
   bloodLostPerSecond: 1
   badOrgan: 0

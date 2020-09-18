@@ -3,6 +3,7 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 using Human;
+using UnityEditor.UIElements;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -81,13 +82,15 @@ public class PlayerControls : MonoBehaviour
             from
                 item in hits
             orderby
-                item.transform.GetComponentInChildren<SpriteRenderer>()?.sortingLayerID,
-                item.transform.GetComponentInChildren<SpriteRenderer>()?.sortingOrder descending
+                item.transform.GetChild(0).GetComponent<SpriteRenderer>()?.sortingLayerID,
+                item.transform.GetChild(0).GetComponent<SpriteRenderer>()?.sortingOrder descending
+            where
+                mask == (mask | (1 << item.transform.gameObject.layer))
             select
-                item
-        ).ToArray().First().transform.gameObject;
+                item.transform.gameObject
+        ).ToArray().First();
         if (_heldObj.layer == 9 && _heldObj.GetComponent<Organ>().IsAttached()) return;
-        _heldObjSpriteRen = _heldObj.GetComponentInChildren<SpriteRenderer>();
+        _heldObjSpriteRen = _heldObj.transform.GetChild(0).GetComponent<SpriteRenderer>();
         _oldSortOrder = _heldObjSpriteRen.sortingOrder;
         _heldObjSpriteRen.sortingOrder = 10;
 
