@@ -1,4 +1,5 @@
-﻿using Human;
+﻿using System;
+using Human;
 using UnityEngine;
 
 public class MoveObjectWithTables : MonoBehaviour

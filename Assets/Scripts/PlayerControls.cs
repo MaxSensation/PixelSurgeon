@@ -76,11 +76,11 @@ public class PlayerControls : MonoBehaviour
         _mousePos = _controls.Player.Mouseposition.ReadValue<Vector2>();
         _mousePos = _camera.ScreenToWorldPoint(_mousePos);
         RaycastHit2D[] hits = Physics2D.RaycastAll(_mousePos, Vector2.zero, 0f, mask);
-
-        if (hits.Length <= 0) return;
+        var gameobjects = hits.Where(hit => hit.collider.gameObject.activeSelf).Select(hit => hit.collider.gameObject).ToArray();
+        if (gameobjects.Length <= 0) return;
         _heldObj = (
             from
-                item in hits
+                item in gameobjects
             orderby
                 item.transform.GetChild(0).GetComponent<SpriteRenderer>()?.sortingLayerID,
                 item.transform.GetChild(0).GetComponent<SpriteRenderer>()?.sortingOrder descending
@@ -89,7 +89,13 @@ public class PlayerControls : MonoBehaviour
             select
                 item.transform.gameObject
         ).ToArray().First();
-        if (_heldObj.layer == 9 && _heldObj.GetComponent<Organ>().IsAttached()) return;
+        
+        if (_heldObj.layer == 9 && _heldObj.GetComponent<Organ>().IsAttached())
+        {
+            _heldObj = null;
+            return;
+        }
+        
         _heldObjSpriteRen = _heldObj.transform.GetChild(0).GetComponent<SpriteRenderer>();
         _oldSortOrder = _heldObjSpriteRen.sortingOrder;
         _heldObjSpriteRen.sortingOrder = 10;

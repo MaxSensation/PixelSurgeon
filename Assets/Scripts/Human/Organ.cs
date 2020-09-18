@@ -21,6 +21,7 @@ namespace Human
 
         private enum ToolDetach
         {
+            None,
             Scalpel,
             Saw
         }
@@ -56,6 +57,8 @@ namespace Human
                     break;
                 case ToolDetach.Saw:
                     PlayerControls.OnSawEvent += DetachOrgan;
+                    break;
+                case ToolDetach.None:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
