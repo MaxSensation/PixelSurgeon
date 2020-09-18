@@ -109,7 +109,7 @@ namespace Human
         private void AttachOrgan(GameObject o)
         {
             if (o != gameObject) return;
-            if (100f - 100 * Mathf.Clamp01(GetGoalDistance()-0.1f) > 90)
+            if (100f - 100 * Mathf.Clamp01(GetGoalDistance()-0.1f) > 80)
                 isAttached = true;
         }
         
