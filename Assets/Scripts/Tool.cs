@@ -5,13 +5,14 @@ using UnityEngine;
 public class Tool : MonoBehaviour
 {
     [SerializeField] private ContactFilter2D contactFilter = default;
+    [SerializeField] private LayerMask mask = default;
     private PolygonCollider2D _collider;
     private List<Collider2D> _overlapResults;
 
-    void Start()
+    private void Start()
     {
         _overlapResults = new List<Collider2D>();
-        _collider = GetComponentInChildren<PolygonCollider2D>();
+        _collider = transform.GetChild(1).GetComponent<PolygonCollider2D>();
     }
 
     public GameObject GetOrgan()
@@ -24,7 +25,9 @@ public class Tool : MonoBehaviour
                 from
                     item in _overlapResults
                 orderby
-                    item.gameObject.GetComponentInChildren<SpriteRenderer>()?.sortingOrder descending
+                    item.transform.GetChild(0).GetComponent<SpriteRenderer>()?.sortingOrder descending
+                where 
+                    mask == (mask | (1 << item.transform.gameObject.layer))
                 select
                     item
             ).ToArray().First().transform.gameObject;
