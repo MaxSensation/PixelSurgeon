@@ -3529,6 +3529,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 349401603}
     m_Modifications:
+    - target: {fileID: 2036723148386008660, guid: 8fc489bbca11fba4196336dd9e665858, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2036723149848100064, guid: 8fc489bbca11fba4196336dd9e665858, type: 3}
       propertyPath: m_Name
       value: Sewingkit
@@ -3801,6 +3805,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 349401603}
     m_Modifications:
+    - target: {fileID: 3283276465141712790, guid: eebc27b83d20f2c4394e6008b58b2f21, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3283276466138101008, guid: eebc27b83d20f2c4394e6008b58b2f21, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.11
@@ -4296,6 +4304,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 349401603}
     m_Modifications:
+    - target: {fileID: 6783391326074195033, guid: 5373d0686dd380543998e140d6a83f96, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6783391326473244497, guid: 5373d0686dd380543998e140d6a83f96, type: 3}
       propertyPath: m_Name
       value: Saw
