@@ -3876,6 +3876,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 320615729442297454, guid: 2bc13caf460cf5f44b678ed8c0010eb0, type: 3}
+      propertyPath: toolToAttach
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 320615729442297490, guid: 2bc13caf460cf5f44b678ed8c0010eb0, type: 3}
       propertyPath: m_Name
       value: KidneyLeft
@@ -4216,6 +4220,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2316801023895354456, guid: 4197c7d128d3e694fa8e4e7261f335e8, type: 3}
+      propertyPath: toolToAttach
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4197c7d128d3e694fa8e4e7261f335e8, type: 3}
 --- !u!1001 &3899602958150994191
@@ -4272,6 +4280,10 @@ PrefabInstance:
     - target: {fileID: 3505582477984700491, guid: 3fc750becd47510479cfbbc6dbd8e367, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3505582477984700500, guid: 3fc750becd47510479cfbbc6dbd8e367, type: 3}
+      propertyPath: toolToAttach
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fc750becd47510479cfbbc6dbd8e367, type: 3}
@@ -4391,6 +4403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallIntestine
       objectReference: {fileID: 0}
+    - target: {fileID: 3588591662493900211, guid: 032a719fc989e64428de61d3f128023a, type: 3}
+      propertyPath: toolToAttach
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 032a719fc989e64428de61d3f128023a, type: 3}
 --- !u!4 &4267121968208913513 stripped
@@ -4416,6 +4432,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 488491115}
     m_Modifications:
+    - target: {fileID: 2607406777837986575, guid: 478d61270e89a9f4394abe7992a36c5a, type: 3}
+      propertyPath: toolToAttach
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2607406777837986576, guid: 478d61270e89a9f4394abe7992a36c5a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.08
@@ -4633,6 +4653,10 @@ PrefabInstance:
     - target: {fileID: 4751586179567083970, guid: 90dcf9c3b727251419386f5da679529a, type: 3}
       propertyPath: m_Name
       value: Liver
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751586179567083998, guid: 90dcf9c3b727251419386f5da679529a, type: 3}
+      propertyPath: toolToAttach
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90dcf9c3b727251419386f5da679529a, type: 3}
@@ -4861,6 +4885,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7957296841291831110, guid: 6afec8a4188a8b14f8548f96ffbfc262, type: 3}
+      propertyPath: toolToAttach
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7957296841291831113, guid: 6afec8a4188a8b14f8548f96ffbfc262, type: 3}
       propertyPath: m_Name
       value: Heart
@@ -4922,6 +4950,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8608028760667541236, guid: 0036d5b552cd2fe4ba687fcb0365b523, type: 3}
+      propertyPath: toolToAttach
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0036d5b552cd2fe4ba687fcb0365b523, type: 3}
 --- !u!114 &8608028759318503266 stripped
@@ -4947,6 +4979,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 488491115}
     m_Modifications:
+    - target: {fileID: 8659790415248002953, guid: 2eec729f26143324f868f51bd4558090, type: 3}
+      propertyPath: toolToAttach
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8659790415248002965, guid: 2eec729f26143324f868f51bd4558090, type: 3}
       propertyPath: m_Name
       value: Ribcage

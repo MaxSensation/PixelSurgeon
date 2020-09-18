@@ -133,7 +133,7 @@ MonoBehaviour:
   description: Round red
   bodyFunction: To pump blood around the body
   isAttached: 0
-  toolToAttach: 0
+  toolToAttach: 1
   toolToDetach: 0
   bloodLostPerSecond: 10
   badOrgan: 0
