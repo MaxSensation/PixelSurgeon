@@ -17,7 +17,7 @@ public class OrganManager : MonoBehaviour
     private int _currentScore;
 
     public static Action OnLostToMuchBloodEvent;
-    public static Action<int> OnTransplantSuccessful;
+    public static Action<char> OnTransplantSuccessful;
 
     private void Start()
     {
@@ -60,6 +60,7 @@ public class OrganManager : MonoBehaviour
             _currentBlood -= GetBloodLostAmount();
             _bloodMonitor.OnBloodLost?.Invoke(_currentBlood, _survivalBloodAmount);   
         }
+        Debug.Log("He died of bloodlost");
         OnLostToMuchBloodEvent?.Invoke();
     }
 
@@ -75,11 +76,11 @@ public class OrganManager : MonoBehaviour
         foreach (var organ in allOrgans.Where(o => o.badOrgan == false))
             CalculateOrganScorePercentage(organ);
         Debug.Log(_currentScore);
-        if (_currentScore > 90) return 'A';
-        if (_currentScore > 80) return 'B';
-        if (_currentScore > 70) return 'C';
-        if (_currentScore > 60) return 'D';
-        return _currentScore > 50 ? 'E' : 'F';
+        if (_currentScore > 95) return 'A';
+        if (_currentScore > 85) return 'B';
+        if (_currentScore > 75) return 'C';
+        if (_currentScore > 65) return 'D';
+        return _currentScore > 55 ? 'E' : 'F';
     }
 
     private int GetBloodLostAmount()
