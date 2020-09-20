@@ -66,10 +66,7 @@ namespace Human
             }
         }
 
-        public string GetOrganName()
-        {
-            return organName;
-        }
+
 
         public void SetCorrectPosition()
         {
@@ -122,6 +119,19 @@ namespace Human
             if(!isAttached) return;
             isAttached = false;
             OnOrganModifiedEvent?.Invoke(toolToDetach.ToString());
+        }
+        
+        public string GetOrganName()
+        {
+            return organName;
+        }
+        public string GetOrganDesc()
+        {
+            return description;
+        }
+        public string GetOrganFunc()
+        {
+            return bodyFunction;
         }
     }
 }

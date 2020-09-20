@@ -130,8 +130,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organName: Right Arm
-  description: 
-  bodyFunction: 
+  description: 'Test Description Test Description Test Description Test Description
+    Test Description Test Description '
+  bodyFunction: 'Test Function Test Function Test Function Test Function Test Function '
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 2

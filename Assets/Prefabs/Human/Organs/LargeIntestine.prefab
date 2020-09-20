@@ -129,9 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232d57c740b2c4845aeed5d815c05093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  organName: LargeIntestine
-  description: 
-  bodyFunction: 
+  organName: Large Intestine
+  description: 'Test Description Test Description Test Description Test Description
+    Test Description Test Description '
+  bodyFunction: 'Test Function Test Function Test Function Test Function Test Function '
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 1
