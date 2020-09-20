@@ -3,12 +3,11 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 using Human;
-using UnityEditor.UIElements;
 
 public class PlayerControls : MonoBehaviour
 {
     [SerializeField] private LayerMask mask = default;
-    public static Action<GameObject> OnCutEvent, OnSawEvent, OnSewnEvent, OnDropOrganEvent;
+    public static Action<GameObject> OnCutEvent, OnSawEvent, OnSewnEvent, OnOrganPickupEvent, OnToolPickupEvent, OnDropOrganEvent, OnDropToolEvent;
     private PlayerActionsScript _controls;
     private bool _isHolding;
     private GameObject _heldObj;
@@ -38,19 +37,29 @@ public class PlayerControls : MonoBehaviour
     private void Start()
     {
         _controls.Player.Scroll.performed += ctx => { if (_isHolding && _heldObj.layer == 8) Rotate(ctx); };
-        _controls.Player.LeftClick.started += _ => Click();
-        _controls.Player.LeftClick.performed += _ =>
+        _controls.Player.LeftClick.started += _ => LeftClick();
+        _controls.Player.LeftClick.performed += _ => LeftClickRelease();
+        _controls.Player.RightClick.performed += _ => RightClick();
+    }
+
+    private void LeftClickRelease()
+    {
         {
-            if (_heldObj != null)
+            if (_heldObj == null) return;
+            _isHolding = false;
+            _heldObj.transform.localScale = new Vector3(1f, 1f, 1f);
+            _heldObjSpriteRen.sortingOrder = _oldSortOrder;
+            switch (_heldObj.layer)
             {
-                _isHolding = false;
-                _heldObj.transform.localScale = new Vector3(1f, 1f, 1f);
-                _heldObjSpriteRen.sortingOrder = _oldSortOrder;
-                if (_heldObj.layer == 9)
+                case 8:
+                    OnDropToolEvent?.Invoke(_heldObj);
+                    break;
+                case 9:
                     OnDropOrganEvent?.Invoke(_heldObj);
+                    break;
             }
-        };
-        _controls.Player.RightClick.performed += _ => RightClick(); //TODO: If held object Saw 
+            _heldObj = null;
+        }
     }
 
     private void RightClick()
@@ -69,9 +78,8 @@ public class PlayerControls : MonoBehaviour
                 break;
         }
     }
-
-    //TODO: när man cuttar med såg OnSawEvent.
-    private void Click()
+    
+    private void LeftClick()
     {
         _mousePos = _controls.Player.Mouseposition.ReadValue<Vector2>();
         _mousePos = _camera.ScreenToWorldPoint(_mousePos);
@@ -100,15 +108,20 @@ public class PlayerControls : MonoBehaviour
         _oldSortOrder = _heldObjSpriteRen.sortingOrder;
         _heldObjSpriteRen.sortingOrder = 10;
 
-        if (_heldObj.layer == 9) //layer 9 == Organs
+        switch (_heldObj.layer)
         {
-            _startPosX = _mousePos.x - _heldObj.transform.position.x;
-            _startPosY = _mousePos.y - _heldObj.transform.position.y;
-        }
-        else if (_heldObj.layer == 8) //layer 8 == Tools
-        {
-            _startPosX = 0;
-            _startPosY = 0;
+            //layer 8 == Tools
+            case 8:
+                _startPosX = 0;
+                _startPosY = 0;
+                OnToolPickupEvent?.Invoke(_heldObj);
+                break;
+            //layer 9 == Organs
+            case 9:
+                _startPosX = _mousePos.x - _heldObj.transform.position.x;
+                _startPosY = _mousePos.y - _heldObj.transform.position.y;
+                OnOrganPickupEvent?.Invoke(_heldObj);
+                break;
         }
         _heldObj.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
         _isHolding = true;
