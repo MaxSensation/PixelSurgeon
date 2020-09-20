@@ -10,12 +10,14 @@ public class OrganManager : MonoBehaviour
 {
     [SerializeField] private List<Organ> inBodyOrgans = default, transferOrgans = default, transferOrgansAlternatives = default;
     [SerializeField] private int maxScorePerOrgan = default, startBlood = default, totalOrganTransplants = default;
+    private bool _skinFlapsIsOpen;
     private int _survivalBloodAmount;
     private int _currentBlood;
     private BloodMonitor _bloodMonitor;
     private int _currentScore;
 
     public static Action OnLostToMuchBloodEvent;
+    public static Action<int> OnTransplantSuccessful;
 
     private void Start()
     {
@@ -24,6 +26,18 @@ public class OrganManager : MonoBehaviour
         _survivalBloodAmount = (int) (startBlood * 0.6f);
         StartCoroutine(BloodControl());
         GenerateScenario();
+        SkinFlaps.OnOpenFlapEvent += () => _skinFlapsIsOpen = true;
+        SkinFlaps.OnCloseFlapEvent += () => _skinFlapsIsOpen = false;
+        Organ.OnOrganModifiedEvent += s => CheckWinConditions();
+        SkinFlaps.OnCloseFlapEvent += CheckWinConditions;
+    }
+    
+    private void CheckWinConditions()
+    {
+        if (!inBodyOrgans.Union(transferOrgans).Where(o => o.badOrgan == false).All(o => o.IsAttached()) || _skinFlapsIsOpen) return;
+        OnTransplantSuccessful?.Invoke(GetScore());
+        Debug.Log("Player Won!");
+        Debug.Log(GetScore());
     }
 
     private void GenerateScenario()
@@ -46,40 +60,33 @@ public class OrganManager : MonoBehaviour
             _currentBlood -= GetBloodLostAmount();
             _bloodMonitor.OnBloodLost?.Invoke(_currentBlood, _survivalBloodAmount);   
         }
-        Debug.Log("Human died of bloodloss");
         OnLostToMuchBloodEvent?.Invoke();
     }
-    
-    /*
 
-    public int GetOrganScore()
+    private void CalculateOrganScorePercentage(Organ organ)
+    {
+        var score = 100f - 100 * Mathf.Clamp01(organ.GetGoalDistance() - 0.1f);
+        _currentScore = (int)(_currentScore * (score / 100f));
+    }
+    public char GetScore()
     {
         _currentScore = maxScorePerOrgan;
-        foreach (var goodOrgan in goodOrgans)
-        {
-            var goodOrganPercentage = 100f - 100 * Mathf.Clamp01(goodOrgan.GetGoalDistance()-0.1f);
-            if (goodOrgan.IsAttached())
-            {
-                _currentScore = (int) (_currentScore * (goodOrganPercentage / 100f));
-                Debug.Log(goodOrgan.GetOrganName() + " PositionPlacement: " + goodOrganPercentage + "%");
-            }
-            else
-            {
-                Debug.Log(goodOrgan.GetOrganName() + " is not attached!");
-                _currentScore = 0;
-                OnGoodOrgansNotAttachedEvent?.Invoke();
-            }
-        }
-        Debug.Log("Human has " + _currentBlood + "ml blood Left");
-        Debug.Log("Total Score: " + _currentScore);
-        return _currentScore;
+        var allOrgans = inBodyOrgans.Union(transferOrgans).ToArray();
+        foreach (var organ in allOrgans.Where(o => o.badOrgan == false))
+            CalculateOrganScorePercentage(organ);
+        Debug.Log(_currentScore);
+        if (_currentScore > 90) return 'A';
+        if (_currentScore > 80) return 'B';
+        if (_currentScore > 70) return 'C';
+        if (_currentScore > 60) return 'D';
+        return _currentScore > 50 ? 'E' : 'F';
     }
-    */
-    
+
     private int GetBloodLostAmount()
     {
-        var currentLostBlood = 0;
-        var organs = inBodyOrgans.Union(transferOrgans).GroupBy(o => o).Where(i => i.Count() > 1).Select(y => y.Key).ToList();
-        return currentLostBlood;
+        return inBodyOrgans
+            .Where(o => o.IsAttached() == false)
+            .Where(organ => !transferOrgans.Any(t => t.GetOrganName() == organ.GetOrganName() && t.IsAttached()))
+            .Sum(organ => organ.GetBloodLostAmount());
     }    
 }

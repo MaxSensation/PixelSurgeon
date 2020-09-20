@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inBodyOrgans: []
   transferOrgans: []
+  transferOrgansAlternatives: []
   maxScorePerOrgan: 100
   startBlood: 5000
   totalOrganTransplants: 1

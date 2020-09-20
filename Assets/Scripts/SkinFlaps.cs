@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class SkinFlaps : MonoBehaviour
 {
         [SerializeField] private GameObject openFlaps = default, closedFlaps = default;
         [SerializeField] private AudioClip openSound, closeSound;
         private AudioSource _audioSource;
+        public static Action OnOpenFlapEvent, OnCloseFlapEvent;
         private void Start()
         {
                 _audioSource = GetComponent<AudioSource>();
@@ -30,6 +32,7 @@ public class SkinFlaps : MonoBehaviour
                 openFlaps.SetActive(true);
                 _audioSource.clip = openSound;
                 _audioSource.Play();
+                OnOpenFlapEvent?.Invoke();
         }
 
         private void CloseFlaps()
@@ -38,5 +41,6 @@ public class SkinFlaps : MonoBehaviour
                 openFlaps.SetActive(false);
                 _audioSource.clip = closeSound;
                 _audioSource.Play();
+                OnCloseFlapEvent?.Invoke();
         }
 }
