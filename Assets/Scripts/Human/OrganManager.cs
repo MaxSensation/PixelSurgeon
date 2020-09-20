@@ -18,6 +18,7 @@ public class OrganManager : MonoBehaviour
 
     public static Action OnLostToMuchBloodEvent;
     public static Action<char> OnTransplantSuccessful;
+    public static Action<List<Organ>> OnScenarioGenerated;
 
     private void Start()
     {
@@ -50,6 +51,7 @@ public class OrganManager : MonoBehaviour
             transferOrgans.Add(transferOrgansAlternatives.Find(o => o.GetOrganName() == organ.GetOrganName()));
         }
         transferOrgans.ForEach(o => o.gameObject.SetActive(true));
+        OnScenarioGenerated?.Invoke(transferOrgans);
     }
 
     private IEnumerator BloodControl()

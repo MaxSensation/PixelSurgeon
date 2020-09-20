@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Heart transplant
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 48df3d626d1a5f442a65c59eedf07591, type: 2}
   m_sharedMaterial: {fileID: -4754400716605329953, guid: 48df3d626d1a5f442a65c59eedf07591, type: 2}
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -223,4 +223,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05820ce8df1543b458ad81a8317eef37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 2548336826338460034}
+  text: {fileID: 2548336826338460034}
