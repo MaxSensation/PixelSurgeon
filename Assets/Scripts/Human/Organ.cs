@@ -16,6 +16,7 @@ namespace Human
         [SerializeField] internal bool badOrgan = default;
         [SerializeField] private Color badOrganColor = default;
         [SerializeField]private Vector2 wantedPosition;
+        public static Action<String> OnOrganModifiedEvent;
         private PolygonCollider2D _col;
         private GameObject _pixelMan;
 
@@ -25,11 +26,11 @@ namespace Human
             Scalpel,
             Saw
         }
-        
+
         private enum ToolAttach
         {
             None,
-            SewingKit
+            Sewingkit
         }
         
         private void Start()
@@ -40,7 +41,7 @@ namespace Human
             
             switch (toolToAttach)
             {
-                case ToolAttach.SewingKit:
+                case ToolAttach.Sewingkit:
                     PlayerControls.OnSewnEvent += AttachOrgan;
                     break;
                 case ToolAttach.None:
@@ -109,14 +110,18 @@ namespace Human
         private void AttachOrgan(GameObject o)
         {
             if (o != gameObject) return;
-            if (100f - 100 * Mathf.Clamp01(GetGoalDistance()-0.1f) > 80)
-                isAttached = true;
+            if (!(100f - 100 * Mathf.Clamp01(GetGoalDistance() - 0.1f) > 80)) return;
+            if(isAttached) return; 
+            isAttached = true;
+            OnOrganModifiedEvent?.Invoke(toolToAttach.ToString());
         }
         
         private void DetachOrgan(GameObject o)
         {
             if (o != gameObject) return;
+            if(!isAttached) return;
             isAttached = false;
+            OnOrganModifiedEvent?.Invoke(toolToDetach.ToString());
         }
     }
 }

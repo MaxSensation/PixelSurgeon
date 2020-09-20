@@ -3,8 +3,11 @@
 public class SkinFlaps : MonoBehaviour
 {
         [SerializeField] private GameObject openFlaps = default, closedFlaps = default;
+        [SerializeField] private AudioClip openSound, closeSound;
+        private AudioSource _audioSource;
         private void Start()
         {
+                _audioSource = GetComponent<AudioSource>();
                 PlayerControls.OnCutEvent += CheckKnifeEvent;
                 PlayerControls.OnSewnEvent += CheckSewnEvent;
         }
@@ -25,12 +28,15 @@ public class SkinFlaps : MonoBehaviour
         {
                 closedFlaps.SetActive(false);
                 openFlaps.SetActive(true);
+                _audioSource.clip = openSound;
+                _audioSource.Play();
         }
 
         private void CloseFlaps()
         {
-                
                 closedFlaps.SetActive(true);
                 openFlaps.SetActive(false);
+                _audioSource.clip = closeSound;
+                _audioSource.Play();
         }
 }

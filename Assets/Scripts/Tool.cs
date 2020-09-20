@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Human;
 using UnityEngine;
 
 public class Tool : MonoBehaviour
@@ -7,11 +8,20 @@ public class Tool : MonoBehaviour
     [SerializeField] private ContactFilter2D contactFilter = default;
     private PolygonCollider2D _collider;
     private List<Collider2D> _overlapResults;
-
+    private AudioSource _audioSource;
+    
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         _overlapResults = new List<Collider2D>();
         _collider = transform.GetChild(1).GetComponent<PolygonCollider2D>();
+        Organ.OnOrganModifiedEvent += ToolUsed;
+    }
+
+    private void ToolUsed(string usedTool)
+    {
+        if (usedTool == gameObject.name)
+            _audioSource.Play();
     }
 
     public GameObject GetOrgan()

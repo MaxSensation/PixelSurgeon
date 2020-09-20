@@ -2,7 +2,7 @@
 
 public class MoveObjectWithSurgeonTable : MonoBehaviour
 {
-    [SerializeField] private GameObject table;
+    [SerializeField] private GameObject table = default;
     private Rigidbody2D _rb, _tablerb;
     private void Start()
     {
