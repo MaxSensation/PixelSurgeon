@@ -1944,11 +1944,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1862250378636028009, guid: 8db64ec80d4e3eb41a856bd61a022717, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1862250378636028009, guid: 8db64ec80d4e3eb41a856bd61a022717, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1862250378636028009, guid: 8db64ec80d4e3eb41a856bd61a022717, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1974,13 +1974,25 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2548336826338460034, guid: 8db64ec80d4e3eb41a856bd61a022717, type: 3}
+      propertyPath: m_fontSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548336826338460034, guid: 8db64ec80d4e3eb41a856bd61a022717, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775445150148810593, guid: 8db64ec80d4e3eb41a856bd61a022717, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.9299927
+      objectReference: {fileID: 0}
     - target: {fileID: 5371763588168103879, guid: 8db64ec80d4e3eb41a856bd61a022717, type: 3}
       propertyPath: m_Name
       value: PatientChart
       objectReference: {fileID: 0}
     - target: {fileID: 5371763588168103879, guid: 8db64ec80d4e3eb41a856bd61a022717, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8db64ec80d4e3eb41a856bd61a022717, type: 3}
@@ -5363,10 +5375,6 @@ PrefabInstance:
       propertyPath: transferOrgansAlternatives.Array.data[12]
       value: 
       objectReference: {fileID: 985819385}
-    - target: {fileID: 7856040205681010321, guid: ae6641996100f2c4889a49ed8df62973, type: 3}
-      propertyPath: totalOrganTransplants
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7856040205681010326, guid: ae6641996100f2c4889a49ed8df62973, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.116243936
