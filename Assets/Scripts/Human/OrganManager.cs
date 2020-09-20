@@ -69,7 +69,8 @@ public class OrganManager : MonoBehaviour
         var score = 100f - 100 * Mathf.Clamp01(organ.GetGoalDistance() - 0.1f);
         _currentScore = (int)(_currentScore * (score / 100f));
     }
-    public char GetScore()
+
+    private char GetScore()
     {
         _currentScore = maxScorePerOrgan;
         var allOrgans = inBodyOrgans.Union(transferOrgans).ToArray();

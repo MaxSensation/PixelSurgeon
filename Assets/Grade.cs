@@ -10,14 +10,14 @@ public class Grade : MonoBehaviour
     private Image _image;
     private void Start()
     {
-        Debug.Log("Test");
         _image = grade.GetComponent<Image>();
-        OrganManager.OnTransplantSuccessful += OnTransplantSuccessful;
+        OrganManager.OnTransplantSuccessful += UpdateGrade;
+        OrganManager.OnLostToMuchBloodEvent += () => UpdateGrade('F');
     }
 
-    private void OnTransplantSuccessful(char grade)
+    private void UpdateGrade(char gradeChar)
     {
-        _image.sprite = grades.Find(g => g.name == grade.ToString());
+        _image.sprite = grades.Find(g => g.name == gradeChar.ToString());
         uiGameObject.SetActive(true);
     }
 }

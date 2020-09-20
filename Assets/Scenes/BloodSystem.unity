@@ -4915,6 +4915,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 206300632}
     m_Modifications:
+    - target: {fileID: 6561188607969545898, guid: 50b00a80486401841add6dcf2869ba26, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6561188607969545898, guid: 50b00a80486401841add6dcf2869ba26, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6561188607969545898, guid: 50b00a80486401841add6dcf2869ba26, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561188607969545898, guid: 50b00a80486401841add6dcf2869ba26, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6561188608548400419, guid: 50b00a80486401841add6dcf2869ba26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5002,6 +5018,22 @@ PrefabInstance:
     - target: {fileID: 6561188608548400420, guid: 50b00a80486401841add6dcf2869ba26, type: 3}
       propertyPath: m_Name
       value: BloodMonitor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561188608663400452, guid: 50b00a80486401841add6dcf2869ba26, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6561188608663400452, guid: 50b00a80486401841add6dcf2869ba26, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6561188608663400452, guid: 50b00a80486401841add6dcf2869ba26, type: 3}
+      propertyPath: m_fontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561188608663400452, guid: 50b00a80486401841add6dcf2869ba26, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50b00a80486401841add6dcf2869ba26, type: 3}
