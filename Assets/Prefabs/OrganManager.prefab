@@ -43,21 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428360e741e15ff40be92225b8e4651f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodOrgans:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  badOrgans:
-  - {fileID: 0}
+  inBodyOrgans: []
+  transferOrgans: []
   maxScorePerOrgan: 100
   startBlood: 5000
+  totalOrganTransplants: 1

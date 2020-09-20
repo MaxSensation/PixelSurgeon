@@ -139,8 +139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openFlaps: {fileID: 1568558976423547188}
   closedFlaps: {fileID: 4879281616452186301}
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
+  openSound: {fileID: 8300000, guid: e5c5e63332c5aee42a2d9b1b4920b4a1, type: 3}
+  closeSound: {fileID: 8300000, guid: 6f14eea2d50d11f428f96f71640a326e, type: 3}
 --- !u!50 &1844519269
 Rigidbody2D:
   serializedVersion: 4

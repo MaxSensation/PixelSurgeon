@@ -12,7 +12,7 @@ namespace Editor
             DrawDefaultInspector();
             var organManager = (OrganManager)target;
             if (GUILayout.Button("Test Score")){
-                organManager.GetOrganScore();
+                //organManager.GetOrganScore();
             }
         }
     }

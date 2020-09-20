@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using Human;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class OrganManager : MonoBehaviour
 {
-    [SerializeField] private List<Organ> goodOrgans = default, badOrgans = default;
-    [SerializeField] private int maxScorePerOrgan = default;
-    [SerializeField] private int startBlood = default;
+    [SerializeField] private List<Organ> inBodyOrgans = default, transferOrgans = default, transferOrgansAlternatives = default;
+    [SerializeField] private int maxScorePerOrgan = default, startBlood = default, totalOrganTransplants = default;
     private int _survivalBloodAmount;
     private int _currentBlood;
     private BloodMonitor _bloodMonitor;
     private int _currentScore;
 
-    public static Action OnGoodOrgansNotAttachedEvent, OnLostToMuchBloodEvent;
+    public static Action OnLostToMuchBloodEvent;
 
     private void Start()
     {
@@ -23,6 +23,19 @@ public class OrganManager : MonoBehaviour
         _currentBlood = startBlood;
         _survivalBloodAmount = (int) (startBlood * 0.6f);
         StartCoroutine(BloodControl());
+        GenerateScenario();
+    }
+
+    private void GenerateScenario()
+    {
+        while (transferOrgans.Count < totalOrganTransplants)
+        {
+            var organ = inBodyOrgans[Random.Range(0, inBodyOrgans.Count)];
+            if (transferOrgans.Any(o => o.GetOrganName() == organ.GetOrganName())) continue;
+            organ.badOrgan = true;
+            transferOrgans.Add(transferOrgansAlternatives.Find(o => o.GetOrganName() == organ.GetOrganName()));
+        }
+        transferOrgans.ForEach(o => o.gameObject.SetActive(true));
     }
 
     private IEnumerator BloodControl()
@@ -36,6 +49,8 @@ public class OrganManager : MonoBehaviour
         Debug.Log("Human died of bloodloss");
         OnLostToMuchBloodEvent?.Invoke();
     }
+    
+    /*
 
     public int GetOrganScore()
     {
@@ -59,21 +74,12 @@ public class OrganManager : MonoBehaviour
         Debug.Log("Total Score: " + _currentScore);
         return _currentScore;
     }
-
+    */
+    
     private int GetBloodLostAmount()
     {
         var currentLostBlood = 0;
-        foreach (var goodOrgan in goodOrgans)
-        {
-            if (!goodOrgan.IsAttached() && badOrgans.Any(badorgan => badorgan.GetOrganName() == goodOrgan.GetOrganName()))
-            {
-                var badOrgan = badOrgans.Where(organ => organ.GetOrganName() == goodOrgan.name).ToArray()[0];
-                if (!badOrgan.IsAttached()) 
-                    currentLostBlood += goodOrgan.GetBloodLostAmount();
-            }
-            else if (!goodOrgan.IsAttached())
-                currentLostBlood += goodOrgan.GetBloodLostAmount();
-        }
+        var organs = inBodyOrgans.Union(transferOrgans).GroupBy(o => o).Where(i => i.Count() > 1).Select(y => y.Key).ToList();
         return currentLostBlood;
-    }
+    }    
 }
