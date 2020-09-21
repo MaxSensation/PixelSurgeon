@@ -2048,13 +2048,17 @@ MonoBehaviour:
   m_text: 'In this game you will act as a surgeon and preform surgeries depending
     on what the patients chart says. You will need to use the correct tools to detach
     or attach body parts and organs. You will also need to keep an eye on the vitals
-    monitor to make sure your patient isn''t loosing too much blood.
+    monitor to make sure your patient isn''t loosing too much blood. If you reach
+    3000 ml your patient will die.
 
-    LMB is
-    used to select and hold tools or organs
 
-    RMB is used to cut or sew with the
-    tool currently equipped.'
+    LMB is used to select and hold tools or
+    organs.
+
+    RMB is used to cut or sew with the tool currently equipped.
+
+    MMB
+    scroll can be used to rotate equipped tool.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 81e1c48b0fda3d649a2d150cca9478fb, type: 2}
   m_sharedMaterial: {fileID: -7876374305090685436, guid: 81e1c48b0fda3d649a2d150cca9478fb, type: 2}
