@@ -48,9 +48,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organName: Stomach
-  description: 'Test Description Test Description Test Description Test Description
-    Test Description Test Description '
-  bodyFunction: 'Test Function Test Function Test Function Test Function Test Function '
+  description: 'The acidity in the human stomach can kill certain pathogens and neutralize
+    some toxins.
+
+
+    A human can live without a stomach.
+
+
+    The design of the
+    stomach allows a person to eat a large meal that can be digested slowly over
+    time.'
+  bodyFunction: 
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 1

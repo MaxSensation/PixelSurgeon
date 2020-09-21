@@ -260,9 +260,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organName: Heart
-  description: 'Test Description Test Description Test Description Test Description
-    Test Description Test Description '
-  bodyFunction: 'Test Function Test Function Test Function Test Function Test Function '
+  description: "The heart will beat about 115,000 times each day.\r\n\nMost heart
+    attacks happen on a Monday. \r\n\nHeart cells stop dividing, which means heart
+    cancer is extremely rare.\r\n"
+  bodyFunction: 
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 1

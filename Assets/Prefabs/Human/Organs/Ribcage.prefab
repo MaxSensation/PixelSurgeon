@@ -130,9 +130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organName: Ribcage
-  description: 'Test Description Test Description Test Description Test Description
-    Test Description Test Description '
-  bodyFunction: 'Test Function Test Function Test Function Test Function Test Function '
+  description: "The rib cage expands 3 - 5 cm with every breath.\r\n\r\nThe rib cage
+    protects the heart and lungs but is actually quite fragile, it can break by a
+    powerful sneeze.  \r"
+  bodyFunction: 
   isAttached: 1
   toolToAttach: 0
   toolToDetach: 2

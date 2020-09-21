@@ -48,9 +48,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organName: Liver
-  description: 'Test Description Test Description Test Description Test Description
-    Test Description Test Description '
-  bodyFunction: 'Test Function Test Function Test Function Test Function Test Function '
+  description: 'The liver consists of 96% water.
+
+
+    When people donate half their
+    liver, the remaining part of the liver regenerates the section that was removed.
+
+
+    The
+    liver detoxifies the harmful things we take in like alcohol and drugs.'
+  bodyFunction: 
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 1

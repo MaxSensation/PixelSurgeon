@@ -130,9 +130,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organName: Right Kidney
-  description: 'Test Description Test Description Test Description Test Description
-    Test Description Test Description '
-  bodyFunction: 'Test Function Test Function Test Function Test Function Test Function '
+  description: "Kidneys can filter 78 liters of blood a minute, a healthy kidney
+    therefore filters a lot of toxins from the body. \r\n\nIt is possible to live
+    with only one kidney.\r\n\n1 in 10 people will have a kidney stone, and most
+    of these people will be men.\r"
+  bodyFunction: 
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 1
