@@ -17,8 +17,8 @@ public class SurgenTableMover : MonoBehaviour
         Left,
         Right
     }
-    
-    void Start()
+
+    private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _directionVector = Vector2.zero;

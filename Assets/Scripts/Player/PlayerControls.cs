@@ -36,20 +36,17 @@ public class PlayerControls : MonoBehaviour
 
     private void Start()
     {
-        _controls.Player.Scroll.performed += ctx => { if (_isHolding && _heldObj.layer == 8) Rotate(ctx); };
+        _controls.Player.Scroll.performed += Scroll;
         _controls.Player.LeftClick.started += _ => LeftClick();
         _controls.Player.LeftClick.performed += _ => LeftClickRelease();
         _controls.Player.RightClick.performed += _ => RightClick();
     }
 
-    private void OnDestroy()
+    private void Scroll(InputAction.CallbackContext ctx)
     {
-        _controls.Player.Scroll.performed -= ctx => { if (_isHolding && _heldObj.layer == 8) Rotate(ctx); };
-        _controls.Player.LeftClick.started -= _ => LeftClick();
-        _controls.Player.LeftClick.performed -= _ => LeftClickRelease();
-        _controls.Player.RightClick.performed -= _ => RightClick();
+        if (_isHolding && _heldObj.layer == 8) Rotate(ctx);
     }
-
+    
     private void LeftClickRelease()
     {
         {

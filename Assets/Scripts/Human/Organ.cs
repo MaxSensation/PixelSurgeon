@@ -32,11 +32,15 @@ namespace Human
             None,
             Sewingkit
         }
-        
-        private void Start()
+
+        private void Awake()
         {
             _pixelMan = FindObjectOfType<PixelMan>().gameObject;
             _col = GetComponent<PolygonCollider2D>();
+        }
+
+        private void Start()
+        {
             switch (toolToAttach)
             {
                 case ToolAttach.Sewingkit:
@@ -62,37 +66,20 @@ namespace Human
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            GetComponentInChildren<SpriteRenderer>().color = badOrgan ? badOrganColor : Color.white;
         }
 
         private void OnDestroy()
         {
-            switch (toolToAttach)
-            {
-                case ToolAttach.Sewingkit:
-                    PlayerControls.OnSewnEvent -= AttachOrgan;
-                    break;
-                case ToolAttach.None:
-                    PlayerControls.OnDropOrganEvent -= AttachOrgan;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            PlayerControls.OnSewnEvent = null;
+            PlayerControls.OnDropOrganEvent = null;
+            PlayerControls.OnCutEvent = null;
+            PlayerControls.OnSawEvent = null;
+        }
 
-            switch (toolToDetach)
-            {
-                case ToolDetach.Scalpel:
-                    PlayerControls.OnCutEvent -= DetachOrgan;
-                    break;
-                case ToolDetach.Saw:
-                    PlayerControls.OnSawEvent -= DetachOrgan;
-                    break;
-                case ToolDetach.None:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+        public void SetAsBadOrgan()
+        {
+            GetComponentInChildren<SpriteRenderer>().color = badOrganColor;
+            badOrgan = true;
         }
 
 

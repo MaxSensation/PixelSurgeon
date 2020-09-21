@@ -16,38 +16,34 @@ public class OrganManager : MonoBehaviour
     private int _currentBlood;
     private BloodMonitor _bloodMonitor;
     private int _currentScore;
-    private Coroutine _coroutine;
-
     public static Action OnLostToMuchBloodEvent;
     public static Action<char> OnTransplantSuccessfulEvent;
     public static Action<List<Organ>> OnScenarioGeneratedEvent;
 
     private void Awake()
     {
-        SkinFlaps.OnOpenFlapEvent += () => _skinFlapsIsOpen = true;
-        SkinFlaps.OnCloseFlapEvent += () => _skinFlapsIsOpen = false;
-        Organ.OnOrganModifiedEvent += (organ, s) => CheckWinConditions();
-        SkinFlaps.OnCloseFlapEvent += CheckWinConditions;
-        _totalOrganTransplants = GameManager.GetOrganAmount();
         _bloodMonitor = FindObjectOfType<BloodMonitor>();
         _currentBlood = startBlood;
         _survivalBloodAmount = (int) (startBlood * 0.6f);
-        _coroutine = StartCoroutine(BloodControl());
-        _skinFlapsIsOpen = false;
+        _totalOrganTransplants = GameManager.GetOrganAmount();
     }
 
     private void Start()
     {
+        SkinFlaps.OnOpenFlapEvent += () => _skinFlapsIsOpen = true;
+        SkinFlaps.OnCloseFlapEvent += () => _skinFlapsIsOpen = false;
+        Organ.OnOrganModifiedEvent += (organ, s) => CheckWinConditions();
+        SkinFlaps.OnCloseFlapEvent += CheckWinConditions;
         GenerateScenario();
+        StartCoroutine(BloodControl());
     }
 
     private void OnDestroy()
     {
-        SkinFlaps.OnOpenFlapEvent -= () => _skinFlapsIsOpen = true;
-        SkinFlaps.OnCloseFlapEvent -= () => _skinFlapsIsOpen = false;
-        Organ.OnOrganModifiedEvent -= (organ, s) => CheckWinConditions();
-        SkinFlaps.OnCloseFlapEvent -= CheckWinConditions;
-        StopCoroutine(_coroutine);
+        SkinFlaps.OnOpenFlapEvent = null;
+        SkinFlaps.OnCloseFlapEvent = null;
+        Organ.OnOrganModifiedEvent = null;
+        SkinFlaps.OnCloseFlapEvent = null;
     }
 
     private void CheckWinConditions()
@@ -62,7 +58,7 @@ public class OrganManager : MonoBehaviour
         {
             var organ = inBodyOrgans[Random.Range(0, inBodyOrgans.Count)];
             if (transferOrgans.Any(o => o.GetOrganName() == organ.GetOrganName())) continue;
-            organ.badOrgan = true;
+            organ.SetAsBadOrgan();
             transferOrgans.Add(transferOrgansAlternatives.Find(o => o.GetOrganName() == organ.GetOrganName()));
         }
         transferOrgans.ForEach(o => o.gameObject.SetActive(true));

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,8 +20,8 @@ public class Grade : MonoBehaviour
 
     private void OnDestroy()
     {
-        OrganManager.OnTransplantSuccessfulEvent -= UpdateGrade;
-        OrganManager.OnLostToMuchBloodEvent -= () => UpdateGrade('F');
+        OrganManager.OnTransplantSuccessfulEvent = null;
+        OrganManager.OnLostToMuchBloodEvent = null;
     }
 
     private void UpdateGrade(char gradeChar)

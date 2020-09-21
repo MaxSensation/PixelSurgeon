@@ -6,9 +6,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip organPickupSound, toolPickupSound, organDropSound, toolDropSound; 
     private AudioSource _audioSource;
 
-    private void Start()
+
+    private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
         PlayerControls.OnToolPickupEvent += OnToolPickupEvent;
         PlayerControls.OnOrganPickupEvent += OnOrganPickupEvent;
         PlayerControls.OnDropOrganEvent += OnDropOrganEvent;
@@ -17,10 +22,10 @@ public class AudioManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerControls.OnToolPickupEvent -= OnToolPickupEvent;
-        PlayerControls.OnOrganPickupEvent -= OnOrganPickupEvent;
-        PlayerControls.OnDropOrganEvent -= OnDropOrganEvent;
-        PlayerControls.OnDropToolEvent -= OnDropToolEvent;
+        PlayerControls.OnToolPickupEvent = null;
+        PlayerControls.OnOrganPickupEvent = null;
+        PlayerControls.OnDropOrganEvent = null;
+        PlayerControls.OnDropToolEvent = null;
     }
 
     private void OnToolPickupEvent(GameObject obj)

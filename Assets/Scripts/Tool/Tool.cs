@@ -10,18 +10,22 @@ public class Tool : MonoBehaviour
     private PolygonCollider2D _collider;
     private List<Collider2D> _overlapResults;
     private AudioSource _audioSource;
-    
-    private void Start()
+
+    private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
         _overlapResults = new List<Collider2D>();
         _collider = transform.GetChild(1).GetComponent<PolygonCollider2D>();
+    }
+
+    private void Start()
+    {
         Organ.OnOrganModifiedEvent += ToolUsed;
     }
 
     private void OnDestroy()
     {
-        Organ.OnOrganModifiedEvent -= ToolUsed;
+        Organ.OnOrganModifiedEvent = null;
     }
 
     private void ToolUsed(Organ organ, string usedTool)

@@ -6,7 +6,7 @@ public class MoveObjectWithTables : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private bool _isOrgan;
     private Organ _organ;
-    private void Start()
+    private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _organ = GetComponent<Organ>();

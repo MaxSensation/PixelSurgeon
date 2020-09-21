@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
         if (_instance == null){
             _instance = this;
             DontDestroyOnLoad(this);
-            _round = 1;
+            _round = 0;
             OrganManager.OnTransplantSuccessfulEvent += (c) => _round++;
         }
         else

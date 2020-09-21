@@ -1,4 +1,5 @@
-﻿using Human;
+﻿using System;
+using Human;
 using UnityEngine;
 
 public class HeartAnimation : MonoBehaviour
@@ -7,7 +8,8 @@ public class HeartAnimation : MonoBehaviour
     private AudioSource _audioSource;
     private bool _isOrgan;
     private Organ _thisOrgan;
-    private void Start()
+
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
         _thisOrgan = transform.parent.GetComponent<Organ>();
@@ -16,12 +18,16 @@ public class HeartAnimation : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         if (_thisOrgan.IsAttached())
             _animator.SetTrigger("Connect");
+    }
+
+    private void Start()
+    {
         Organ.OnOrganModifiedEvent += OnOrganModifiedEvent;
     }
 
     private void OnDestroy()
     {
-        Organ.OnOrganModifiedEvent -= OnOrganModifiedEvent;
+        Organ.OnOrganModifiedEvent = null;
     }
 
     private void OnOrganModifiedEvent(Organ organ, string toolUsed)

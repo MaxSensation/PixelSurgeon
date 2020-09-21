@@ -10,15 +10,18 @@ public class SkinFlaps : MonoBehaviour
         private void Awake()
         {
                 _audioSource = GetComponent<AudioSource>();
+        }
+
+        private void Start()
+        {
                 PlayerControls.OnCutEvent += CheckKnifeEvent;
                 PlayerControls.OnSewnEvent += CheckSewnEvent;
-                OnOpenFlapEvent?.Invoke();
         }
 
         private void OnDestroy()
         {
-                PlayerControls.OnCutEvent -= CheckKnifeEvent;
-                PlayerControls.OnSewnEvent -= CheckSewnEvent;
+                PlayerControls.OnCutEvent = null;
+                PlayerControls.OnSewnEvent = null;
         }
 
         private void CheckKnifeEvent(GameObject o)
