@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Human;
 using UnityEngine;
@@ -16,6 +17,11 @@ public class Tool : MonoBehaviour
         _overlapResults = new List<Collider2D>();
         _collider = transform.GetChild(1).GetComponent<PolygonCollider2D>();
         Organ.OnOrganModifiedEvent += ToolUsed;
+    }
+
+    private void OnDestroy()
+    {
+        Organ.OnOrganModifiedEvent -= ToolUsed;
     }
 
     private void ToolUsed(Organ organ, string usedTool)

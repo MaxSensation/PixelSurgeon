@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Human;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,11 @@ public class PatientChart : MonoBehaviour, IPointerClickHandler
     {
         _animator = GetComponent<Animator>();
         OrganManager.OnScenarioGeneratedEvent += OnScenarioGenerated;
+    }
+
+    private void OnDestroy()
+    {
+        OrganManager.OnScenarioGeneratedEvent -= OnScenarioGenerated;
     }
 
     private void OnScenarioGenerated(List<Organ> organs)

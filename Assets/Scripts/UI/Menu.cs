@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,6 +11,12 @@ public class Menu : MonoBehaviour
     {
         startButton.onClick.AddListener(LoadGame);
         quit.onClick.AddListener(QuitGame);
+    }
+
+    private void OnDestroy()
+    {
+        startButton.onClick.RemoveListener(LoadGame);
+        quit.onClick.RemoveListener(QuitGame);
     }
 
     private void LoadGame()

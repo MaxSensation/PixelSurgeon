@@ -43,9 +43,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 428360e741e15ff40be92225b8e4651f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inBodyOrgans: []
+  inBodyOrgans:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   transferOrgans: []
-  transferOrgansAlternatives: []
+  transferOrgansAlternatives:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   maxScorePerOrgan: 100
   startBlood: 5000
   totalOrganTransplants: 1

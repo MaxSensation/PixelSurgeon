@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Policy;
 using UnityEngine;
 
 namespace Human
@@ -15,7 +16,7 @@ namespace Human
         [SerializeField] private int bloodLostPerSecond = default;
         [SerializeField] internal bool badOrgan = default;
         [SerializeField] private Color badOrganColor = default;
-        [SerializeField]private Vector2 wantedPosition;
+        [SerializeField]private Vector2 wantedPosition = default;
         public static Action<Organ, string> OnOrganModifiedEvent;
         private PolygonCollider2D _col;
         private GameObject _pixelMan;
@@ -66,6 +67,34 @@ namespace Human
             }
         }
 
+        private void OnDestroy()
+        {
+            switch (toolToAttach)
+            {
+                case ToolAttach.Sewingkit:
+                    PlayerControls.OnSewnEvent -= AttachOrgan;
+                    break;
+                case ToolAttach.None:
+                    PlayerControls.OnDropOrganEvent -= AttachOrgan;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            switch (toolToDetach)
+            {
+                case ToolDetach.Scalpel:
+                    PlayerControls.OnCutEvent -= DetachOrgan;
+                    break;
+                case ToolDetach.Saw:
+                    PlayerControls.OnSawEvent -= DetachOrgan;
+                    break;
+                case ToolDetach.None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
 
 
         public void SetCorrectPosition()

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
@@ -13,6 +14,15 @@ public class AudioManager : MonoBehaviour
         PlayerControls.OnDropOrganEvent += OnDropOrganEvent;
         PlayerControls.OnDropToolEvent += OnDropToolEvent;
     }
+
+    private void OnDestroy()
+    {
+        PlayerControls.OnToolPickupEvent -= OnToolPickupEvent;
+        PlayerControls.OnOrganPickupEvent -= OnOrganPickupEvent;
+        PlayerControls.OnDropOrganEvent -= OnDropOrganEvent;
+        PlayerControls.OnDropToolEvent -= OnDropToolEvent;
+    }
+
     private void OnToolPickupEvent(GameObject obj)
     {
         _audioSource.clip = toolPickupSound;

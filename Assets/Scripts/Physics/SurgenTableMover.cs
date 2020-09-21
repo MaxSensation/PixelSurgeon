@@ -1,11 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class SurgenTableMover : MonoBehaviour
 {
     [SerializeField] private float force = default;
     [SerializeField] private MoveDirection moveDirection = default;
+    [SerializeField] private int delay;
     private Rigidbody2D _rigidbody2D;
-
+    private Vector2 _directionVector;
+    private float _time;
+    private bool _used;
     private enum MoveDirection
     {
         Up,
@@ -17,27 +21,40 @@ public class SurgenTableMover : MonoBehaviour
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        var directionVector = Vector2.zero;
+        _directionVector = Vector2.zero;
         switch (moveDirection)
         {
             case MoveDirection.Up:
-                directionVector = Vector2.up;
+                _directionVector = Vector2.up;
                 break;
             case MoveDirection.Down:
-                directionVector = Vector2.down;
+                _directionVector = Vector2.down;
                 break;
             case MoveDirection.Left:
-                directionVector = Vector2.left;
+                _directionVector = Vector2.left;
                 break;
             case MoveDirection.Right:
-                directionVector = Vector2.right;
+                _directionVector = Vector2.right;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
-        PushTableToGameView(directionVector);
+    }
+
+    private void Update()
+    {
+        if (_used)
+            return;
+        if (_time > delay)
+        {
+            PushTableToGameView(_directionVector);
+            _used = true;
+        }
+        _time += Time.deltaTime;
     }
 
     private void PushTableToGameView(Vector2 direction)
     {
-        _rigidbody2D.AddForce(direction * force * 1000 * Time.deltaTime);
+        _rigidbody2D.AddForce(direction * (force * 1000 * Time.deltaTime));
     }
 }

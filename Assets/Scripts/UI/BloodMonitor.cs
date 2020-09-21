@@ -15,6 +15,11 @@ public class BloodMonitor : MonoBehaviour
         OnBloodLost += SetBloodAmount;
     }
 
+    private void OnDestroy()
+    {
+        OnBloodLost -= SetBloodAmount;
+    }
+
     private void SetBloodAmount(int amount, int minimum)
     {
         bloodAmountText.SetText("cur: "+ amount + "ml" + "\n" + "min: " + minimum + "ml");

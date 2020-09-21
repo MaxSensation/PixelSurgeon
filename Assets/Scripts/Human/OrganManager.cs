@@ -15,6 +15,7 @@ public class OrganManager : MonoBehaviour
     private int _currentBlood;
     private BloodMonitor _bloodMonitor;
     private int _currentScore;
+    private Coroutine _coroutine;
 
     public static Action OnLostToMuchBloodEvent;
     public static Action<char> OnTransplantSuccessfulEvent;
@@ -25,20 +26,28 @@ public class OrganManager : MonoBehaviour
         _bloodMonitor = FindObjectOfType<BloodMonitor>();
         _currentBlood = startBlood;
         _survivalBloodAmount = (int) (startBlood * 0.6f);
-        StartCoroutine(BloodControl());
+        _coroutine = StartCoroutine(BloodControl());
         GenerateScenario();
         SkinFlaps.OnOpenFlapEvent += () => _skinFlapsIsOpen = true;
         SkinFlaps.OnCloseFlapEvent += () => _skinFlapsIsOpen = false;
         Organ.OnOrganModifiedEvent += (organ, s) => CheckWinConditions();
         SkinFlaps.OnCloseFlapEvent += CheckWinConditions;
+        _skinFlapsIsOpen = false;
     }
-    
+
+    private void OnDestroy()
+    {
+        SkinFlaps.OnOpenFlapEvent -= () => _skinFlapsIsOpen = true;
+        SkinFlaps.OnCloseFlapEvent -= () => _skinFlapsIsOpen = false;
+        Organ.OnOrganModifiedEvent -= (organ, s) => CheckWinConditions();
+        SkinFlaps.OnCloseFlapEvent -= CheckWinConditions;
+        StopCoroutine(_coroutine);
+    }
+
     private void CheckWinConditions()
     {
         if (!inBodyOrgans.Union(transferOrgans).Where(o => o.badOrgan == false).All(o => o.IsAttached()) || _skinFlapsIsOpen) return;
         OnTransplantSuccessfulEvent?.Invoke(GetScore());
-        Debug.Log("Player Won!");
-        Debug.Log(GetScore());
     }
 
     private void GenerateScenario()
@@ -69,7 +78,8 @@ public class OrganManager : MonoBehaviour
     private void CalculateOrganScorePercentage(Organ organ)
     {
         var score = 100f - 100 * Mathf.Clamp01(organ.GetGoalDistance() - 0.1f);
-        _currentScore = (int)(_currentScore * (score / 100f));
+        _currentScore = (int) (_currentScore * (score / 100f));
+        
     }
 
     private char GetScore()
@@ -78,7 +88,6 @@ public class OrganManager : MonoBehaviour
         var allOrgans = inBodyOrgans.Union(transferOrgans).ToArray();
         foreach (var organ in allOrgans.Where(o => o.badOrgan == false))
             CalculateOrganScorePercentage(organ);
-        Debug.Log(_currentScore);
         if (_currentScore > 95) return 'A';
         if (_currentScore > 85) return 'B';
         if (_currentScore > 75) return 'C';

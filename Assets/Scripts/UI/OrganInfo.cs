@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Human;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,12 @@ public class OrganInfo : MonoBehaviour, IPointerClickHandler
         _animator = GetComponent<Animator>();
         OrganManager.OnScenarioGeneratedEvent += list => OnOrganPickupEvent(list.First().gameObject);  
         PlayerControls.OnOrganPickupEvent += OnOrganPickupEvent;
+    }
+
+    private void OnDestroy()
+    {
+        OrganManager.OnScenarioGeneratedEvent -= list => OnOrganPickupEvent(list.First().gameObject);  
+        PlayerControls.OnOrganPickupEvent -= OnOrganPickupEvent;
     }
 
     private void OnOrganPickupEvent(GameObject organGO)
