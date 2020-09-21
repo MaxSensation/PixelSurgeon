@@ -73,7 +73,6 @@ public class OrganManager : MonoBehaviour
             _currentBlood -= GetBloodLostAmount();
             _bloodMonitor.OnBloodLost?.Invoke(_currentBlood, _survivalBloodAmount);   
         }
-        Debug.Log("He died of bloodlost");
         OnLostToMuchBloodEvent?.Invoke();
     }
 
