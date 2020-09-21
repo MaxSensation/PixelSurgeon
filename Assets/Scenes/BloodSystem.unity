@@ -4975,10 +4975,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 206300632}
     m_Modifications:
-    - target: {fileID: 1045093737, guid: 1389c19856309c84f8a56621d5b9d63e, type: 3}
-      propertyPath: m_Volume
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 5651232385562399662, guid: 1389c19856309c84f8a56621d5b9d63e, type: 3}
       propertyPath: m_Name
       value: Grade
