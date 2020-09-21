@@ -129,18 +129,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232d57c740b2c4845aeed5d815c05093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  organName: Large Intestine
+  partName: Large Intestine
   description: "The large intestine turns liquid waste into solid stool.\n\nLots
     of bacteria live in the large intestine.\r\n\nThe large intestine is shorter
     than the small intestine, but is wider and is therefore called \u201Clarge\u201D.
     \r"
-  bodyFunction: 
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 1
   bloodLostPerSecond: 50
-  badOrgan: 0
-  badOrganColor: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
+  isBad: 0
+  badColor: {r: 0.60784316, g: 0.60784316, b: 0.60784316, a: 1}
   wantedPosition: {x: -0.08, y: 1.4200001}
 --- !u!60 &2607406777837986574
 PolygonCollider2D:

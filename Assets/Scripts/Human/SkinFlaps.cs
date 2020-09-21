@@ -1,56 +1,61 @@
 ﻿using System;
+using Player;
 using UnityEngine;
 
-public class SkinFlaps : MonoBehaviour
+namespace Human
 {
-        [SerializeField] private GameObject openFlaps = default, closedFlaps = default;
+    public class SkinFlaps : MonoBehaviour
+    {
+        public static Action OnOpenFlapEvent, OnCloseFlapEvent;
+        [SerializeField] private GameObject openFlaps, closedFlaps;
         [SerializeField] private AudioClip openSound, closeSound;
         private AudioSource _audioSource;
-        public static Action OnOpenFlapEvent, OnCloseFlapEvent;
+
         private void Awake()
         {
-                _audioSource = GetComponent<AudioSource>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Start()
         {
-                PlayerControls.OnCutEvent += CheckKnifeEvent;
-                PlayerControls.OnSewnEvent += CheckSewnEvent;
+            Controls.OnCutEvent += CheckKnifeEvent;
+            Controls.OnSewnEvent += CheckSewnEvent;
         }
 
         private void OnDestroy()
         {
-                PlayerControls.OnCutEvent = null;
-                PlayerControls.OnSewnEvent = null;
+            Controls.OnCutEvent = null;
+            Controls.OnSewnEvent = null;
         }
 
         private void CheckKnifeEvent(GameObject o)
         {
-                if (o == closedFlaps)
-                        OpenFlaps();
+            if (o == closedFlaps)
+                OpenFlaps();
         }
 
         private void CheckSewnEvent(GameObject o)
         {
-                if (o == openFlaps)
-                        CloseFlaps();
+            if (o == openFlaps)
+                CloseFlaps();
         }
 
         private void OpenFlaps()
         {
-                closedFlaps.SetActive(false);
-                openFlaps.SetActive(true);
-                _audioSource.clip = openSound;
-                _audioSource.Play();
-                OnOpenFlapEvent?.Invoke();
+            closedFlaps.SetActive(false);
+            openFlaps.SetActive(true);
+            _audioSource.clip = openSound;
+            _audioSource.Play();
+            OnOpenFlapEvent?.Invoke();
         }
 
         private void CloseFlaps()
         {
-                closedFlaps.SetActive(true);
-                openFlaps.SetActive(false);
-                _audioSource.clip = closeSound;
-                _audioSource.Play();
-                OnCloseFlapEvent?.Invoke();
+            closedFlaps.SetActive(true);
+            openFlaps.SetActive(false);
+            _audioSource.clip = closeSound;
+            _audioSource.Play();
+            OnCloseFlapEvent?.Invoke();
         }
+    }
 }

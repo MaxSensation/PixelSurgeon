@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232d57c740b2c4845aeed5d815c05093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  organName: Stomach
+  partName: Stomach
   description: 'The acidity in the human stomach can kill certain pathogens and neutralize
     some toxins.
 
@@ -58,13 +58,12 @@ MonoBehaviour:
     The design of the
     stomach allows a person to eat a large meal that can be digested slowly over
     time.'
-  bodyFunction: 
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 1
   bloodLostPerSecond: 40
-  badOrgan: 0
-  badOrganColor: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
+  isBad: 0
+  badColor: {r: 0.60784316, g: 0.60784316, b: 0.60784316, a: 1}
   wantedPosition: {x: -0.03, y: 1.48}
 --- !u!60 &3505582477984700501
 PolygonCollider2D:

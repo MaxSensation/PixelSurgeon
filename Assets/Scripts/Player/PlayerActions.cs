@@ -5,11 +5,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
+using Object = UnityEngine.Object;
 
-public class @PlayerActionsScript : IInputActionCollection, IDisposable
+public class PlayerActionsScript : IInputActionCollection, IDisposable
 {
-    public InputActionAsset asset { get; }
-    public @PlayerActionsScript()
+    // Player
+    private readonly InputActionMap m_Player;
+    private readonly InputAction m_Player_LeftClick;
+    private readonly InputAction m_Player_Mouseposition;
+    private readonly InputAction m_Player_RightClick;
+    private readonly InputAction m_Player_Scroll;
+    private int m_controlsSchemeIndex = -1;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+
+    public PlayerActionsScript()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""PlayerActions"",
@@ -114,16 +123,28 @@ public class @PlayerActionsScript : IInputActionCollection, IDisposable
     ]
 }");
         // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_LeftClick = m_Player.FindAction("LeftClick", throwIfNotFound: true);
-        m_Player_Mouseposition = m_Player.FindAction("Mouseposition", throwIfNotFound: true);
-        m_Player_RightClick = m_Player.FindAction("RightClick", throwIfNotFound: true);
-        m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
+        m_Player = asset.FindActionMap("Player", true);
+        m_Player_LeftClick = m_Player.FindAction("LeftClick", true);
+        m_Player_Mouseposition = m_Player.FindAction("Mouseposition", true);
+        m_Player_RightClick = m_Player.FindAction("RightClick", true);
+        m_Player_Scroll = m_Player.FindAction("Scroll", true);
+    }
+
+    public InputActionAsset asset { get; }
+    public PlayerActions Player => new PlayerActions(this);
+
+    public InputControlScheme controlsScheme
+    {
+        get
+        {
+            if (m_controlsSchemeIndex == -1) m_controlsSchemeIndex = asset.FindControlSchemeIndex("controls");
+            return asset.controlSchemes[m_controlsSchemeIndex];
+        }
     }
 
     public void Dispose()
     {
-        UnityEngine.Object.Destroy(asset);
+        Object.Destroy(asset);
     }
 
     public InputBinding? bindingMask
@@ -165,71 +186,79 @@ public class @PlayerActionsScript : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_LeftClick;
-    private readonly InputAction m_Player_Mouseposition;
-    private readonly InputAction m_Player_RightClick;
-    private readonly InputAction m_Player_Scroll;
     public struct PlayerActions
     {
-        private @PlayerActionsScript m_Wrapper;
-        public PlayerActions(@PlayerActionsScript wrapper) { m_Wrapper = wrapper; }
-        public InputAction @LeftClick => m_Wrapper.m_Player_LeftClick;
-        public InputAction @Mouseposition => m_Wrapper.m_Player_Mouseposition;
-        public InputAction @RightClick => m_Wrapper.m_Player_RightClick;
-        public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
+        private readonly PlayerActionsScript m_Wrapper;
+
+        public PlayerActions(PlayerActionsScript wrapper)
+        {
+            m_Wrapper = wrapper;
+        }
+
+        public InputAction LeftClick => m_Wrapper.m_Player_LeftClick;
+        public InputAction Mouseposition => m_Wrapper.m_Player_Mouseposition;
+        public InputAction RightClick => m_Wrapper.m_Player_RightClick;
+        public InputAction Scroll => m_Wrapper.m_Player_Scroll;
+
+        public InputActionMap Get()
+        {
+            return m_Wrapper.m_Player;
+        }
+
+        public void Enable()
+        {
+            Get().Enable();
+        }
+
+        public void Disable()
+        {
+            Get().Disable();
+        }
+
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+
+        public static implicit operator InputActionMap(PlayerActions set)
+        {
+            return set.Get();
+        }
+
         public void SetCallbacks(IPlayerActions instance)
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @LeftClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftClick;
-                @LeftClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftClick;
-                @LeftClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftClick;
-                @Mouseposition.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseposition;
-                @Mouseposition.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseposition;
-                @Mouseposition.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseposition;
-                @RightClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightClick;
-                @RightClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightClick;
-                @RightClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightClick;
-                @Scroll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
-                @Scroll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
-                @Scroll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
+                LeftClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftClick;
+                LeftClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftClick;
+                LeftClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftClick;
+                Mouseposition.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseposition;
+                Mouseposition.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseposition;
+                Mouseposition.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseposition;
+                RightClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightClick;
+                RightClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightClick;
+                RightClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRightClick;
+                Scroll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
+                Scroll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
+                Scroll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
             }
+
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @LeftClick.started += instance.OnLeftClick;
-                @LeftClick.performed += instance.OnLeftClick;
-                @LeftClick.canceled += instance.OnLeftClick;
-                @Mouseposition.started += instance.OnMouseposition;
-                @Mouseposition.performed += instance.OnMouseposition;
-                @Mouseposition.canceled += instance.OnMouseposition;
-                @RightClick.started += instance.OnRightClick;
-                @RightClick.performed += instance.OnRightClick;
-                @RightClick.canceled += instance.OnRightClick;
-                @Scroll.started += instance.OnScroll;
-                @Scroll.performed += instance.OnScroll;
-                @Scroll.canceled += instance.OnScroll;
+                LeftClick.started += instance.OnLeftClick;
+                LeftClick.performed += instance.OnLeftClick;
+                LeftClick.canceled += instance.OnLeftClick;
+                Mouseposition.started += instance.OnMouseposition;
+                Mouseposition.performed += instance.OnMouseposition;
+                Mouseposition.canceled += instance.OnMouseposition;
+                RightClick.started += instance.OnRightClick;
+                RightClick.performed += instance.OnRightClick;
+                RightClick.canceled += instance.OnRightClick;
+                Scroll.started += instance.OnScroll;
+                Scroll.performed += instance.OnScroll;
+                Scroll.canceled += instance.OnScroll;
             }
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
-    private int m_controlsSchemeIndex = -1;
-    public InputControlScheme controlsScheme
-    {
-        get
-        {
-            if (m_controlsSchemeIndex == -1) m_controlsSchemeIndex = asset.FindControlSchemeIndex("controls");
-            return asset.controlSchemes[m_controlsSchemeIndex];
-        }
-    }
+
     public interface IPlayerActions
     {
         void OnLeftClick(InputAction.CallbackContext context);

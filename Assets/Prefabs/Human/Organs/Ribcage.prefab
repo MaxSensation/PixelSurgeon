@@ -129,17 +129,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232d57c740b2c4845aeed5d815c05093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  organName: Ribcage
+  partName: Ribcage
   description: "The rib cage expands 3 - 5 cm with every breath.\r\n\r\nThe rib cage
     protects the heart and lungs but is actually quite fragile, it can break by a
     powerful sneeze.  \r"
-  bodyFunction: 
   isAttached: 1
   toolToAttach: 0
   toolToDetach: 2
   bloodLostPerSecond: 0
-  badOrgan: 0
-  badOrganColor: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
+  isBad: 0
+  badColor: {r: 0.60784316, g: 0.60784316, b: 0.60784316, a: 1}
   wantedPosition: {x: -0.04, y: 1.5100001}
 --- !u!60 &8659790415248002952
 PolygonCollider2D:

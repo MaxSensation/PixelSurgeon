@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Editor
 {
-    [CustomEditor(typeof(OrganManager))]
+    [CustomEditor(typeof(BodyPartManager))]
     public class OrganManagerEditor : UnityEditor.Editor 
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
-            var organManager = (OrganManager)target;
+            var organManager = (BodyPartManager)target;
             if (GUILayout.Button("Test Score")){
                 //organManager.GetOrganScore();
             }

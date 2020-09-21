@@ -1,19 +1,24 @@
-﻿using UnityEngine;
+﻿using Human;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     private static int _round;
+
     private void Awake()
     {
-        if (_instance == null){
+        if (_instance == null)
+        {
             _instance = this;
             DontDestroyOnLoad(this);
-            _round = 0;
-            OrganManager.OnTransplantSuccessfulEvent += (c) => _round++;
+            _round = 1;
+            BodyPartManager.OnWinEvent += c => _round++;
         }
         else
+        {
             Destroy(this);
+        }
     }
 
     public static int GetOrganAmount()

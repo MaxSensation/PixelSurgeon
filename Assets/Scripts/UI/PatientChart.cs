@@ -1,32 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Human;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PatientChart : MonoBehaviour, IPointerClickHandler
+namespace UI
 {
-    [SerializeField] private TextMeshProUGUI text;
-    private Animator _animator;
-    private void Awake()
+    public class PatientChart : MonoBehaviour, IPointerClickHandler
     {
-        _animator = GetComponent<Animator>();
-        OrganManager.OnScenarioGeneratedEvent += OnScenarioGenerated;
-    }
+        [SerializeField] private TextMeshProUGUI text;
+        private Animator _animator;
 
-    private void OnDestroy()
-    {
-        OrganManager.OnScenarioGeneratedEvent -= OnScenarioGenerated;
-    }
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+            BodyPartManager.OnScenarioGeneratedEvent += OnScenarioGenerated;
+        }
 
-    private void OnScenarioGenerated(List<Organ> organs)
-    {
-        var newText = "";
-        organs.ForEach(o => newText += $"{o.GetOrganName()} Transplant\n");
-        text.text = newText;
-    }
+        private void OnDestroy()
+        {
+            BodyPartManager.OnScenarioGeneratedEvent -= OnScenarioGenerated;
+        }
 
-    public void OnPointerClick(PointerEventData eventData) => _animator.SetTrigger("Clicked");
-    
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            _animator.SetTrigger("Clicked");
+        }
+
+        private void OnScenarioGenerated(List<BodyPart> organs)
+        {
+            var newText = "";
+            organs.ForEach(o => newText += $"{o.GetPartName()} Transplant\n");
+            text.text = newText;
+        }
+    }
 }

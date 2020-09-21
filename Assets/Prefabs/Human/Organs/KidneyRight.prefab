@@ -129,18 +129,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232d57c740b2c4845aeed5d815c05093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  organName: Right Kidney
+  partName: Right Kidney
   description: "Kidneys can filter 78 liters of blood a minute, a healthy kidney
     therefore filters a lot of toxins from the body. \r\n\nIt is possible to live
     with only one kidney.\r\n\n1 in 10 people will have a kidney stone, and most
     of these people will be men.\r"
-  bodyFunction: 
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 1
   bloodLostPerSecond: 20
-  badOrgan: 0
-  badOrganColor: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
+  isBad: 0
+  badColor: {r: 0.60784316, g: 0.60784316, b: 0.60784316, a: 1}
   wantedPosition: {x: -0.08, y: 1.4}
 --- !u!60 &8608028760667541237
 PolygonCollider2D:

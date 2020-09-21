@@ -1,55 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Human;
 using UnityEngine;
 
-public class Tool : MonoBehaviour
+namespace Tool
 {
-    [SerializeField] private ContactFilter2D contactFilter = default;
-    private PolygonCollider2D _collider;
-    private List<Collider2D> _overlapResults;
-    private AudioSource _audioSource;
-
-    private void Awake()
+    public class Tool : MonoBehaviour
     {
-        _audioSource = GetComponent<AudioSource>();
-        _overlapResults = new List<Collider2D>();
-        _collider = transform.GetChild(1).GetComponent<PolygonCollider2D>();
-    }
+        [SerializeField] private ContactFilter2D contactFilter;
+        private AudioSource _audioSource;
+        private PolygonCollider2D _collider;
+        private List<Collider2D> _overlapResults;
 
-    private void Start()
-    {
-        Organ.OnOrganModifiedEvent += ToolUsed;
-    }
-
-    private void OnDestroy()
-    {
-        Organ.OnOrganModifiedEvent = null;
-    }
-
-    private void ToolUsed(Organ organ, string usedTool)
-    {
-        if (usedTool == gameObject.name)
-            _audioSource.Play();
-    }
-
-    public GameObject GetOrgan()
-    {
-        _overlapResults.Clear();
-        _collider.OverlapCollider(contactFilter, _overlapResults);
-        if (_overlapResults.Count > 0)
+        private void Awake()
         {
-            return (
-                from
-                    item in _overlapResults
-                orderby
-                    item.transform.GetChild(0).GetComponent<SpriteRenderer>()?.sortingOrder descending
-                select
-                    item.transform.gameObject
-            ).ToArray().First();
+            _audioSource = GetComponent<AudioSource>();
+            _overlapResults = new List<Collider2D>();
+            _collider = transform.GetChild(1).GetComponent<PolygonCollider2D>();
         }
-        return null;
-    }
 
+        private void Start()
+        {
+            BodyPart.OnToolUsedEvent += ToolUsed;
+        }
+
+        private void OnDestroy()
+        {
+            BodyPart.OnToolUsedEvent = null;
+        }
+
+        private void ToolUsed(BodyPart bodyPart, string usedTool)
+        {
+            if (usedTool == gameObject.name)
+                _audioSource.Play();
+        }
+
+        public GameObject GetBodyPart()
+        {
+            _overlapResults.Clear();
+            _collider.OverlapCollider(contactFilter, _overlapResults);
+            if (_overlapResults.Count > 0)
+                return (
+                    from
+                        item in _overlapResults
+                    orderby
+                        item.transform.GetChild(0).GetComponent<SpriteRenderer>()?.sortingOrder descending
+                    select
+                        item.transform.gameObject
+                ).ToArray().First();
+            return null;
+        }
+    }
 }
