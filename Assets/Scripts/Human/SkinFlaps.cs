@@ -7,12 +7,12 @@ public class SkinFlaps : MonoBehaviour
         [SerializeField] private AudioClip openSound, closeSound;
         private AudioSource _audioSource;
         public static Action OnOpenFlapEvent, OnCloseFlapEvent;
-        private void Start()
+        private void Awake()
         {
                 _audioSource = GetComponent<AudioSource>();
                 PlayerControls.OnCutEvent += CheckKnifeEvent;
                 PlayerControls.OnSewnEvent += CheckSewnEvent;
-                OnOpenFlapEvent.Invoke();
+                OnOpenFlapEvent?.Invoke();
         }
 
         private void OnDestroy()

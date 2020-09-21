@@ -9,7 +9,8 @@ using Random = UnityEngine.Random;
 public class OrganManager : MonoBehaviour
 {
     [SerializeField] private List<Organ> inBodyOrgans = default, transferOrgans = default, transferOrgansAlternatives = default;
-    [SerializeField] private int maxScorePerOrgan = default, startBlood = default, totalOrganTransplants = default;
+    [SerializeField] private int maxScorePerOrgan = default, startBlood = default; 
+    private int totalOrganTransplants;
     private bool _skinFlapsIsOpen;
     private int _survivalBloodAmount;
     private int _currentBlood;
@@ -23,6 +24,7 @@ public class OrganManager : MonoBehaviour
 
     private void Start()
     {
+        totalOrganTransplants = GameManager.GetOrganAmount();
         _bloodMonitor = FindObjectOfType<BloodMonitor>();
         _currentBlood = startBlood;
         _survivalBloodAmount = (int) (startBlood * 0.6f);
