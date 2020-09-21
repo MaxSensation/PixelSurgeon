@@ -4,6 +4,7 @@ using UnityEngine;
 public class HeartAnimation : MonoBehaviour
 {
     private Animator _animator;
+    private AudioSource _audioSource;
     private bool _isOrgan;
     private Organ thisOrgan;
     private void Start()
@@ -13,6 +14,7 @@ public class HeartAnimation : MonoBehaviour
         thisOrgan = transform.parent.GetComponent<Organ>();
         if (thisOrgan == null) return;
         _isOrgan = true;
+        _audioSource = GetComponent<AudioSource>();
         if (!thisOrgan.IsAttached())
             _animator.SetTrigger("Disconnect");
     }
@@ -37,5 +39,10 @@ public class HeartAnimation : MonoBehaviour
                     _animator.SetTrigger("Disconnect");
                 break;
         }
+    }
+
+    public void PlayHeartBeat()
+    {
+        if (thisOrgan.IsAttached()) _audioSource.Play();
     }
 }

@@ -5488,10 +5488,6 @@ PrefabInstance:
       propertyPath: transferOrgansAlternatives.Array.data[12]
       value: 
       objectReference: {fileID: 985819385}
-    - target: {fileID: 7856040205681010321, guid: ae6641996100f2c4889a49ed8df62973, type: 3}
-      propertyPath: totalOrganTransplants
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7856040205681010326, guid: ae6641996100f2c4889a49ed8df62973, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.116243936
