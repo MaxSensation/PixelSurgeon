@@ -55,6 +55,6 @@ public class SurgenTableMover : MonoBehaviour
 
     private void PushTableToGameView(Vector2 direction)
     {
-        _rigidbody2D.AddForce(direction * (force * 1000 * Time.deltaTime));
+        _rigidbody2D.AddForce(direction * force);
     }
 }
