@@ -6,17 +6,17 @@ public class HeartAnimation : MonoBehaviour
     private Animator _animator;
     private AudioSource _audioSource;
     private bool _isOrgan;
-    private Organ thisOrgan;
+    private Organ _thisOrgan;
     private void Start()
     {
         _animator = GetComponent<Animator>();
         Organ.OnOrganModifiedEvent += OnOrganModifiedEvent;
-        thisOrgan = transform.parent.GetComponent<Organ>();
-        if (thisOrgan == null) return;
+        _thisOrgan = transform.parent.GetComponent<Organ>();
+        if (_thisOrgan == null) return;
         _isOrgan = true;
         _audioSource = GetComponent<AudioSource>();
-        if (!thisOrgan.IsAttached())
-            _animator.SetTrigger("Disconnect");
+        if (_thisOrgan.IsAttached())
+            _animator.SetTrigger("Connect");
     }
 
     private void OnOrganModifiedEvent(Organ organ, string toolUsed)
@@ -25,14 +25,14 @@ public class HeartAnimation : MonoBehaviour
         switch (toolUsed)
         {
             case "Sewingkit":
-                if (_isOrgan && organ == thisOrgan)
+                if (_isOrgan && organ == _thisOrgan)
                 {
                     _animator.SetTrigger("Connect");
                 } else if (!_isOrgan)
                     _animator.SetTrigger("Connect");
                 break;
             case "Scalpel":
-                if (_isOrgan && organ == thisOrgan)
+                if (_isOrgan && organ == _thisOrgan)
                 {
                     _animator.SetTrigger("Disconnect");
                 } else if (!_isOrgan)
@@ -43,6 +43,6 @@ public class HeartAnimation : MonoBehaviour
 
     public void PlayHeartBeat()
     {
-        if (thisOrgan.IsAttached()) _audioSource.Play();
+        _audioSource.Play();
     }
 }
