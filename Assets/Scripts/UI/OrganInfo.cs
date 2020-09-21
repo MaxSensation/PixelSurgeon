@@ -11,7 +11,7 @@ public class OrganInfo : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData) => _animator.SetTrigger("Clicked");
     
-    private void Start()
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
         OrganManager.OnScenarioGeneratedEvent += list => OnOrganPickupEvent(list.First().gameObject);  
