@@ -48,9 +48,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organName: Small Intestine
-  description: 'Test Description Test Description Test Description Test Description
-    Test Description Test Description '
-  bodyFunction: 'Test Function Test Function Test Function Test Function Test Function '
+  description: "The small intestine is about three times the length of your body.\r\n\nWen
+    food is eaten, it's held in the small intestine for up to four hours.The body
+    absorbs 90 percent of nutrients through the small intestine.\r\n \r\nThe small
+    intestine contains microscopic fingers referred to as villi. These villi help
+    the body to absorb fat and digested nutrients.\r\n"
+  bodyFunction: 
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 1

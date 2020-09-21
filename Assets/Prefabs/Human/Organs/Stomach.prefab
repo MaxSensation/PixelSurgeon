@@ -48,9 +48,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organName: Stomach
-  description: 'Test Description Test Description Test Description Test Description
-    Test Description Test Description '
-  bodyFunction: 'Test Function Test Function Test Function Test Function Test Function '
+  description: "The stomach plays a role in defending your body from pathogens. The
+    acidity in the human stomach can kill certain pathogens and neutralize some toxins.\r\n\r\nThe
+    stomach is only a part of the human digestive system and a human can live without
+    a stomach. Your small intestines do the most when it comes to food digestion
+    and absorption.\r\n \r\nThe stomach can hold a bit more than a 1 liter of food
+    at once. The design of the stomach allows a person to eat a large meal that can
+    be digested slowly over time.\r\n"
+  bodyFunction: 
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 1
