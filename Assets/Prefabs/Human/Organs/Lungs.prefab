@@ -48,8 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   organName: Lungs
-  description: "Lungs float on water. It\u2019s not something most people are aware
-    of but, actually, the lungs are the only organs in the human body that are capable
+  description: "The lungs are the only organs in the human body that are capable
     of floating on water.\r\n\r\nLungs aren't the same size. To accommodate the heart,
     the right lung is larger than the left lung.\r\n\r\nIt is possible to live with
     only one lung. \r"

@@ -51,19 +51,12 @@ MonoBehaviour:
   description: 'The liver consists of 96% water.
 
 
-
-    The liver can regenerate
-    itself. Even if only 25% of it is still healthy the liver can regenerate itself
-    into a full liver again and this makes liver transplant possible. When people
-    donate half their liver, the remaining part of the liver regenerates the section
-    that was removed.
+    When people donate half their
+    liver, the remaining part of the liver regenerates the section that was removed.
 
 
-
-    The liver detoxifies the harmful things we take in like
-    alcohol and drugs. Without the liver the body cannot process these items.
-
-'
+    The
+    liver detoxifies the harmful things we take in like alcohol and drugs.'
   bodyFunction: 
   isAttached: 1
   toolToAttach: 1
