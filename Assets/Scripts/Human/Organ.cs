@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using UnityEngine;
@@ -38,8 +40,6 @@ namespace Human
         {
             _pixelMan = FindObjectOfType<PixelMan>().gameObject;
             _col = GetComponent<PolygonCollider2D>();
-            GetComponentInChildren<SpriteRenderer>().color = badOrgan ? badOrganColor : Color.white;
-            
             switch (toolToAttach)
             {
                 case ToolAttach.Sewingkit:
@@ -65,6 +65,8 @@ namespace Human
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            GetComponentInChildren<SpriteRenderer>().color = badOrgan ? badOrganColor : Color.white;
         }
 
         private void OnDestroy()

@@ -138,7 +138,7 @@ MonoBehaviour:
   isAttached: 1
   toolToAttach: 1
   toolToDetach: 1
-  bloodLostPerSecond: 1
+  bloodLostPerSecond: 20
   badOrgan: 0
   badOrganColor: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
   wantedPosition: {x: -0.08, y: 1.4}

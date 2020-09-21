@@ -10,7 +10,7 @@ public class OrganManager : MonoBehaviour
 {
     [SerializeField] private List<Organ> inBodyOrgans = default, transferOrgans = default, transferOrgansAlternatives = default;
     [SerializeField] private int maxScorePerOrgan = default, startBlood = default; 
-    private int totalOrganTransplants;
+    private int _totalOrganTransplants;
     private bool _skinFlapsIsOpen;
     private int _survivalBloodAmount;
     private int _currentBlood;
@@ -22,19 +22,23 @@ public class OrganManager : MonoBehaviour
     public static Action<char> OnTransplantSuccessfulEvent;
     public static Action<List<Organ>> OnScenarioGeneratedEvent;
 
-    private void Start()
+    private void Awake()
     {
-        totalOrganTransplants = GameManager.GetOrganAmount();
-        _bloodMonitor = FindObjectOfType<BloodMonitor>();
-        _currentBlood = startBlood;
-        _survivalBloodAmount = (int) (startBlood * 0.6f);
-        _coroutine = StartCoroutine(BloodControl());
-        GenerateScenario();
         SkinFlaps.OnOpenFlapEvent += () => _skinFlapsIsOpen = true;
         SkinFlaps.OnCloseFlapEvent += () => _skinFlapsIsOpen = false;
         Organ.OnOrganModifiedEvent += (organ, s) => CheckWinConditions();
         SkinFlaps.OnCloseFlapEvent += CheckWinConditions;
+        _totalOrganTransplants = GameManager.GetOrganAmount();
+        _bloodMonitor = FindObjectOfType<BloodMonitor>();
+        _currentBlood = startBlood;
+        _survivalBloodAmount = (int) (startBlood * 0.6f);
+        _coroutine = StartCoroutine(BloodControl());
         _skinFlapsIsOpen = false;
+    }
+
+    private void Start()
+    {
+        GenerateScenario();
     }
 
     private void OnDestroy()
@@ -54,7 +58,7 @@ public class OrganManager : MonoBehaviour
 
     private void GenerateScenario()
     {
-        while (transferOrgans.Count < totalOrganTransplants)
+        while (transferOrgans.Count < _totalOrganTransplants)
         {
             var organ = inBodyOrgans[Random.Range(0, inBodyOrgans.Count)];
             if (transferOrgans.Any(o => o.GetOrganName() == organ.GetOrganName())) continue;
@@ -89,6 +93,7 @@ public class OrganManager : MonoBehaviour
         var allOrgans = inBodyOrgans.Union(transferOrgans).ToArray();
         foreach (var organ in allOrgans.Where(o => o.badOrgan == false))
             CalculateOrganScorePercentage(organ);
+        _currentScore = (int) (_currentScore * Mathf.Clamp01((float)_currentBlood / startBlood + 0.05f));
         if (_currentScore > 95) return 'A';
         if (_currentScore > 85) return 'B';
         if (_currentScore > 75) return 'C';
