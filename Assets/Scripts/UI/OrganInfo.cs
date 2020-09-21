@@ -2,13 +2,18 @@
 using Human;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class OrganInfo : MonoBehaviour
+public class OrganInfo : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private TextMeshProUGUI header, desc, function;
+    private Animator _animator;
 
+    public void OnPointerClick(PointerEventData eventData) => _animator.SetTrigger("Clicked");
+    
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         OrganManager.OnScenarioGenerated += list => OnOrganPickupEvent(list.First().gameObject);  
         PlayerControls.OnOrganPickupEvent += OnOrganPickupEvent;
     }

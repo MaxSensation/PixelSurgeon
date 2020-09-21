@@ -16,7 +16,7 @@ namespace Human
         [SerializeField] internal bool badOrgan = default;
         [SerializeField] private Color badOrganColor = default;
         [SerializeField]private Vector2 wantedPosition;
-        public static Action<String> OnOrganModifiedEvent;
+        public static Action<Organ, string> OnOrganModifiedEvent;
         private PolygonCollider2D _col;
         private GameObject _pixelMan;
 
@@ -110,7 +110,7 @@ namespace Human
             if (!(100f - 100 * Mathf.Clamp01(GetGoalDistance() - 0.1f) > 80)) return;
             if(isAttached) return; 
             isAttached = true;
-            OnOrganModifiedEvent?.Invoke(toolToAttach.ToString());
+            OnOrganModifiedEvent?.Invoke(this, toolToAttach.ToString());
         }
         
         private void DetachOrgan(GameObject o)
@@ -118,7 +118,7 @@ namespace Human
             if (o != gameObject) return;
             if(!isAttached) return;
             isAttached = false;
-            OnOrganModifiedEvent?.Invoke(toolToDetach.ToString());
+            OnOrganModifiedEvent?.Invoke(this, toolToDetach.ToString());
         }
         
         public string GetOrganName()

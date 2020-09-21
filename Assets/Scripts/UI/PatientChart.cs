@@ -2,13 +2,15 @@
 using Human;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PatientChart : MonoBehaviour
+public class PatientChart : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private TextMeshProUGUI text;
-
+    private Animator _animator;
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         OrganManager.OnScenarioGenerated += OnScenarioGenerated;
     }
 
@@ -18,4 +20,7 @@ public class PatientChart : MonoBehaviour
         organs.ForEach(o => newText += $"{o.GetOrganName()} Transplant\n");
         text.text = newText;
     }
+
+    public void OnPointerClick(PointerEventData eventData) => _animator.SetTrigger("Clicked");
+    
 }

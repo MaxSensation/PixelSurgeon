@@ -29,7 +29,7 @@ public class OrganManager : MonoBehaviour
         GenerateScenario();
         SkinFlaps.OnOpenFlapEvent += () => _skinFlapsIsOpen = true;
         SkinFlaps.OnCloseFlapEvent += () => _skinFlapsIsOpen = false;
-        Organ.OnOrganModifiedEvent += s => CheckWinConditions();
+        Organ.OnOrganModifiedEvent += (organ, s) => CheckWinConditions();
         SkinFlaps.OnCloseFlapEvent += CheckWinConditions;
     }
     

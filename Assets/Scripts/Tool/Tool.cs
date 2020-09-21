@@ -18,7 +18,7 @@ public class Tool : MonoBehaviour
         Organ.OnOrganModifiedEvent += ToolUsed;
     }
 
-    private void ToolUsed(string usedTool)
+    private void ToolUsed(Organ organ, string usedTool)
     {
         if (usedTool == gameObject.name)
             _audioSource.Play();
