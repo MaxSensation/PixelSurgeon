@@ -11,7 +11,7 @@ public class Grade : MonoBehaviour
     private void Start()
     {
         _image = grade.GetComponent<Image>();
-        OrganManager.OnTransplantSuccessful += UpdateGrade;
+        OrganManager.OnTransplantSuccessfulEvent += UpdateGrade;
         OrganManager.OnLostToMuchBloodEvent += () => UpdateGrade('F');
     }
 

@@ -17,8 +17,8 @@ public class OrganManager : MonoBehaviour
     private int _currentScore;
 
     public static Action OnLostToMuchBloodEvent;
-    public static Action<char> OnTransplantSuccessful;
-    public static Action<List<Organ>> OnScenarioGenerated;
+    public static Action<char> OnTransplantSuccessfulEvent;
+    public static Action<List<Organ>> OnScenarioGeneratedEvent;
 
     private void Start()
     {
@@ -36,7 +36,7 @@ public class OrganManager : MonoBehaviour
     private void CheckWinConditions()
     {
         if (!inBodyOrgans.Union(transferOrgans).Where(o => o.badOrgan == false).All(o => o.IsAttached()) || _skinFlapsIsOpen) return;
-        OnTransplantSuccessful?.Invoke(GetScore());
+        OnTransplantSuccessfulEvent?.Invoke(GetScore());
         Debug.Log("Player Won!");
         Debug.Log(GetScore());
     }
@@ -51,7 +51,7 @@ public class OrganManager : MonoBehaviour
             transferOrgans.Add(transferOrgansAlternatives.Find(o => o.GetOrganName() == organ.GetOrganName()));
         }
         transferOrgans.ForEach(o => o.gameObject.SetActive(true));
-        OnScenarioGenerated?.Invoke(transferOrgans);
+        OnScenarioGeneratedEvent?.Invoke(transferOrgans);
     }
 
     private IEnumerator BloodControl()

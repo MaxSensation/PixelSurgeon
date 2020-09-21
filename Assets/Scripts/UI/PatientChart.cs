@@ -8,10 +8,10 @@ public class PatientChart : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private TextMeshProUGUI text;
     private Animator _animator;
-    private void Start()
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
-        OrganManager.OnScenarioGenerated += OnScenarioGenerated;
+        OrganManager.OnScenarioGeneratedEvent += OnScenarioGenerated;
     }
 
     private void OnScenarioGenerated(List<Organ> organs)
