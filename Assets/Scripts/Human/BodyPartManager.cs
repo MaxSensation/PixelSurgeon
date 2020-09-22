@@ -108,5 +108,10 @@ namespace Human
                 .Where(b => !_transferBodyParts.Any(t => t.GetPartName() == b.GetPartName() && t.IsAttached()))
                 .Sum(b => b.GetBloodLostAmount());
         }
+
+        public bool HasAttachedBodyPart(BodyPart bodyPart)
+        {
+            return bodyParts.Union(_transferBodyParts).Any(b => b.IsAttached() && b.GetPartName() == bodyPart.GetPartName());
+        }
     }
 }

@@ -114,6 +114,7 @@ namespace Human
             if (o != gameObject) return;
             if (!(100f - 100 * Mathf.Clamp01(GetGoalDistance() - 0.1f) > 80)) return;
             if (isAttached) return;
+            if (FindObjectOfType<BodyPartManager>().HasAttachedBodyPart(this)) return; 
             isAttached = true;
             OnToolUsedEvent?.Invoke(this, toolToAttach.ToString());
         }
