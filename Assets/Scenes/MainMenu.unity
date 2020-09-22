@@ -1927,7 +1927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'In this game you will act as a surgeon and preform surgeries depending
+  m_text: 'In this game you will act as a surgeon and perform surgeries depending
     on what the patients chart says. You will need to use the correct tools to detach
     or attach body parts. It is important that the body parts are placed in the correct
     location. You will also need to keep an eye on the vitals monitor to make sure
