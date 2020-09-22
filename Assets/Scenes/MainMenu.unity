@@ -527,7 +527,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 300
+  m_Spacing: 325
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -1428,7 +1428,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 50, y: -0}
   m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1020913755
@@ -1904,7 +1904,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -320}
+  m_AnchoredPosition: {x: 50, y: -345}
   m_SizeDelta: {x: 700, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1314409734
@@ -1927,20 +1927,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'In this game you will act as a surgeon and preform surgeries depending
+  m_text: 'In this game you will act as a surgeon and perform surgeries depending
     on what the patients chart says. You will need to use the correct tools to detach
-    or attach body parts and organs. You will also need to keep an eye on the vitals
-    monitor to make sure your patient isn''t loosing too much blood. If you reach
-    3000 ml your patient will die.
+    or attach body parts. It is important that the body parts are placed in the correct
+    location. You will also need to keep an eye on the vitals monitor to make sure
+    your patient isn''t loosing too much blood. If you reach 3000 ml your patient
+    will die.
 
 
-    LMB is used to select and hold tools or
-    organs.
+    LMB is used to select and hold tools or body parts.
 
-    RMB is used to cut or sew with the tool currently equipped.
+    RMB
+    is used to cut or sew with the tool currently equipped. The tip of the tool is
+    the active area.
 
-    MMB
-    scroll can be used to rotate equipped tool.'
+    MMB scroll can be used to rotate equipped tool.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 48df3d626d1a5f442a65c59eedf07591, type: 2}
   m_sharedMaterial: {fileID: -4754400716605329953, guid: 48df3d626d1a5f442a65c59eedf07591, type: 2}
@@ -2405,7 +2406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -685}
+  m_AnchoredPosition: {x: 50, y: -735}
   m_SizeDelta: {x: 200, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1772819241
