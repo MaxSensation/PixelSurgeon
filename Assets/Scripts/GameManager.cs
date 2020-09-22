@@ -16,10 +16,9 @@ public class GameManager : MonoBehaviour
             BodyPartManager.OnWinEvent += c => _round++;
         }
         else
-        {
             Destroy(this);
-        }
     }
+    
 
     public static int GetOrganAmount()
     {

@@ -23,7 +23,7 @@ namespace UI
 
         private void OnDestroy()
         {
-            BodyPartManager.OnWinEvent = null;
+            BodyPartManager.OnWinEvent -= UpdateGrade;
             BodyPartManager.OnGameOverEvent = null;
         }
 
