@@ -113,5 +113,10 @@ namespace Human
         {
             return bodyParts.Union(_transferBodyParts).Any(b => b.IsAttached() && b.GetPartName() == bodyPart.GetPartName());
         }
+
+        public int GetTotalInBodyParts()
+        {
+            return bodyParts.Count(b => b.IsInBodyBodyPart());
+        }
     }
 }

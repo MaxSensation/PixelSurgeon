@@ -11,7 +11,7 @@ namespace Human
         public static Action<BodyPart, string> OnToolUsedEvent;
         [SerializeField] private string partName;
         [TextArea] [SerializeField] private string description;
-        [SerializeField] private bool isAttached;
+        [SerializeField] private bool isAttached, isInBodyBodyPart;
         [SerializeField] private ToolAttach toolToAttach;
         [SerializeField] private ToolDetach toolToDetach;
         [SerializeField] private int bloodLostPerSecond;
@@ -104,11 +104,6 @@ namespace Human
             return bloodLostPerSecond;
         }
 
-        public bool IsAttached()
-        {
-            return isAttached;
-        }
-
         private void AttachOrgan(GameObject o)
         {
             if (o != gameObject) return;
@@ -135,6 +130,16 @@ namespace Human
         public string GetOrganDesc()
         {
             return description;
+        }
+        
+        public bool IsAttached()
+        {
+            return isAttached;
+        }
+        
+        public bool IsInBodyBodyPart()
+        {
+            return isInBodyBodyPart;
         }
 
         private enum ToolDetach
