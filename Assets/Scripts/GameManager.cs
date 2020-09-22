@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
-    private static int _round;
+    public static GameManager Instance;
+    private int _round;
 
     private void Awake()
     {
-        if (_instance == null)
+        if (Instance == null)
         {
-            _instance = this;
+            Instance = this;
             DontDestroyOnLoad(this);
             _round = 1;
             BodyPartManager.OnWinEvent += c => _round++;
@@ -18,9 +18,17 @@ public class GameManager : MonoBehaviour
         else
             Destroy(this);
     }
-    
 
-    public static int GetOrganAmount()
+    public static void DeleteThis()
+    {
+        BodyPartManager.OnWinEvent = null;
+        var tmp = Instance;
+        Instance = null;
+        Destroy(tmp.gameObject);
+    }
+
+
+    public int GetOrganAmount()
     {
         if (_round > 4)
             return 3;

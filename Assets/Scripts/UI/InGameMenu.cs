@@ -8,7 +8,6 @@ namespace UI
     {
         [SerializeField] private Button next, menu;
         [SerializeField] private string sceneToLoad;
-
         private void Start()
         {
             menu.onClick.AddListener(Menu);
@@ -28,6 +27,7 @@ namespace UI
 
         private void Menu()
         {
+            GameManager.DeleteThis();
             SceneManager.LoadScene(sceneToLoad);
         }
     }

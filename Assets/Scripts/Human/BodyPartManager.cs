@@ -28,12 +28,12 @@ namespace Human
             _bloodMonitor = FindObjectOfType<BloodMonitor>();
             _currentBlood = maxBlood;
             _survivalBloodAmount = (int) (maxBlood * 0.6f);
-            _totalTransplants = GameManager.GetOrganAmount();
             _transferBodyParts = new List<BodyPart>();
         }
 
         private void Start()
         {
+            _totalTransplants = GameManager.Instance.GetOrganAmount();
             SkinFlaps.OnOpenFlapEvent += () => _skinFlapsIsOpen = true;
             SkinFlaps.OnCloseFlapEvent += () => _skinFlapsIsOpen = false;
             BodyPart.OnToolUsedEvent += (organ, s) => CheckWinConditions();
