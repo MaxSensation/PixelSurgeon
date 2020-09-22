@@ -16,6 +16,8 @@ namespace Player
             OnDropBodyPartEvent,
             OnDropToolEvent;
 
+        public static Action OnToolRotateEvent;
+
         [SerializeField] private LayerMask mask;
         private Camera _camera;
         private PlayerActionsScript _controls;
@@ -157,6 +159,7 @@ namespace Player
 
         private void Rotate(InputAction.CallbackContext ctx)
         {
+            OnToolRotateEvent?.Invoke();
             if (ctx.ReadValue<Vector2>().y > 0)
                 _heldObj.transform.Rotate(Vector3.forward, 90f);
             else

@@ -117,6 +117,7 @@ MonoBehaviour:
   toolPickupSound: {fileID: 8300000, guid: dbaf3acd4e6ef684a87203553e61dcd8, type: 3}
   bodyPartDropSound: {fileID: 8300000, guid: cb20e85547ff8584ebb57d10690c1bae, type: 3}
   toolDropSound: {fileID: 8300000, guid: 9b820d0e7522c2c408f894ad1b28e604, type: 3}
+  toolRotateSound: {fileID: 8300000, guid: d634ab9381480a84881b945371ed4d06, type: 3}
 --- !u!82 &8408841345973339955
 AudioSource:
   m_ObjectHideFlags: 0
