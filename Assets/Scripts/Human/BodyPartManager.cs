@@ -98,8 +98,7 @@ namespace Human
             if (_currentScore > 95) return 'A';
             if (_currentScore > 85) return 'B';
             if (_currentScore > 75) return 'C';
-            if (_currentScore > 65) return 'D';
-            return _currentScore > 55 ? 'E' : 'F';
+            return _currentScore > 65 ? 'D' : 'E';
         }
 
         private int GetBloodLostAmount()
