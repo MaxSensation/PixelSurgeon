@@ -2004,6 +2004,12 @@ PrefabInstance:
       propertyPath: isAttached
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5556100597464039438, guid: 85137d040f2e4dc4f9e526bd4d7b7bf5, type: 3}
+      propertyPath: description
+      value: "A human\u2019s little finger contributes over 50% of the hand\u2019s
+        strength. Fingers don\u2019t have muscles that facilitate movement. \nThe
+        tendons in our fingers are moved by the muscles of the forearm."
+      objectReference: {fileID: 0}
     - target: {fileID: 5556100597464039439, guid: 85137d040f2e4dc4f9e526bd4d7b7bf5, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
       value: 11
@@ -2362,6 +2368,12 @@ PrefabInstance:
       propertyPath: wantedPosition.y
       value: 0.80885637
       objectReference: {fileID: 0}
+    - target: {fileID: 5556100597464039438, guid: 85137d040f2e4dc4f9e526bd4d7b7bf5, type: 3}
+      propertyPath: description
+      value: "A human\u2019s little finger contributes over 50% of the hand\u2019s
+        strength. \nFingers don\u2019t have muscles that facilitate movement. The
+        tendons in our fingers are moved by the muscles of the forearm."
+      objectReference: {fileID: 0}
     - target: {fileID: 5556100597464039439, guid: 85137d040f2e4dc4f9e526bd4d7b7bf5, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
       value: 11
@@ -2590,6 +2602,11 @@ PrefabInstance:
     - target: {fileID: 4328087040801428472, guid: 18b2deb76c7bc174c8f21306c790be31, type: 3}
       propertyPath: wantedPosition.y
       value: -2.2211435
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328087040801428472, guid: 18b2deb76c7bc174c8f21306c790be31, type: 3}
+      propertyPath: description
+      value: "A person\u2019s feet has about 500,000 sweat glands and can produce
+        about a pint of sweat a day."
       objectReference: {fileID: 0}
     - target: {fileID: 4328087040801428473, guid: 18b2deb76c7bc174c8f21306c790be31, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
@@ -3182,6 +3199,11 @@ PrefabInstance:
       propertyPath: wantedPosition.y
       value: -2.2911437
       objectReference: {fileID: 0}
+    - target: {fileID: 109851052261770870, guid: 7ef00cefeecf0ae4aad45358f828d8fe, type: 3}
+      propertyPath: description
+      value: "A person\u2019s feet has about 500,000 sweat glands and can produce
+        about a pint of sweat a day."
+      objectReference: {fileID: 0}
     - target: {fileID: 109851052261770871, guid: 7ef00cefeecf0ae4aad45358f828d8fe, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -3527,6 +3549,11 @@ PrefabInstance:
     - target: {fileID: 4328087040801428472, guid: 18b2deb76c7bc174c8f21306c790be31, type: 3}
       propertyPath: isAttached
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4328087040801428472, guid: 18b2deb76c7bc174c8f21306c790be31, type: 3}
+      propertyPath: description
+      value: "A person\u2019s feet has about 500,000 sweat glands and can produce
+        about a pint of sweat a day."
       objectReference: {fileID: 0}
     - target: {fileID: 4328087040801428473, guid: 18b2deb76c7bc174c8f21306c790be31, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
@@ -4183,6 +4210,11 @@ PrefabInstance:
       propertyPath: isAttached
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 109851052261770870, guid: 7ef00cefeecf0ae4aad45358f828d8fe, type: 3}
+      propertyPath: description
+      value: "A person\u2019s feet has about 500,000 sweat \nglands and can produce
+        about a pint of sweat a day."
+      objectReference: {fileID: 0}
     - target: {fileID: 109851052261770871, guid: 7ef00cefeecf0ae4aad45358f828d8fe, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -4679,6 +4711,12 @@ PrefabInstance:
       propertyPath: isAttached
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3369125561708244242, guid: 37fb16f8bcbff5f41a5cb7e17d24df72, type: 3}
+      propertyPath: description
+      value: "A human\u2019s little finger contributes over 50% of the hand\u2019s
+        strength. \nFingers don\u2019t have muscles that facilitate movement. The
+        tendons in our fingers are moved by the muscles of the forearm."
+      objectReference: {fileID: 0}
     - target: {fileID: 3369125561708244243, guid: 37fb16f8bcbff5f41a5cb7e17d24df72, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
       value: 11
@@ -4851,6 +4889,12 @@ PrefabInstance:
     - target: {fileID: 3369125561708244242, guid: 37fb16f8bcbff5f41a5cb7e17d24df72, type: 3}
       propertyPath: wantedPosition.y
       value: 0.9788563
+      objectReference: {fileID: 0}
+    - target: {fileID: 3369125561708244242, guid: 37fb16f8bcbff5f41a5cb7e17d24df72, type: 3}
+      propertyPath: description
+      value: "A human\u2019s little finger contributes over 50% of the hand\u2019s
+        strength. \nFingers don\u2019t have muscles that facilitate movement. The
+        tendons in our fingers are moved by the muscles of the forearm."
       objectReference: {fileID: 0}
     - target: {fileID: 3369125561708244243, guid: 37fb16f8bcbff5f41a5cb7e17d24df72, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
