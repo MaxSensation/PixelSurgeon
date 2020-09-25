@@ -2,7 +2,7 @@
 
 namespace ItemPhysics
 {
-    public class MoveObjectWithSurgeonTable : MonoBehaviour
+    public class MovePixelManWithTable : MonoBehaviour
     {
         [SerializeField] private GameObject table;
         private Rigidbody2D _rb, _tablerb;

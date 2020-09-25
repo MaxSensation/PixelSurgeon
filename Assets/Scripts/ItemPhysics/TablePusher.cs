@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ItemPhysics
 {
-    public class SurgenTableMover : MonoBehaviour
+    public class TablePusher : MonoBehaviour
     {
         [SerializeField] private float force;
         [SerializeField] private MoveDirection moveDirection;
