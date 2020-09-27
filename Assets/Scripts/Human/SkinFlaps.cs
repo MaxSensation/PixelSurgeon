@@ -10,6 +10,7 @@ namespace Human
         [SerializeField] private GameObject openFlaps, closedFlaps;
         [SerializeField] private AudioClip openSound, closeSound;
         private AudioSource _audioSource;
+        private bool _isOpen;
 
         private void Awake()
         {
@@ -30,13 +31,13 @@ namespace Human
 
         private void CheckKnifeEvent(GameObject o)
         {
-            if (o == closedFlaps)
+            if (o == closedFlaps && !_isOpen)
                 OpenFlaps();
         }
 
         private void CheckSewnEvent(GameObject o)
         {
-            if (o == openFlaps)
+            if (o == openFlaps && _isOpen)
                 CloseFlaps();
         }
 
@@ -46,6 +47,7 @@ namespace Human
             openFlaps.SetActive(true);
             _audioSource.clip = openSound;
             _audioSource.Play();
+            _isOpen = true;
             OnOpenFlapEvent?.Invoke();
         }
 
@@ -55,6 +57,7 @@ namespace Human
             openFlaps.SetActive(false);
             _audioSource.clip = closeSound;
             _audioSource.Play();
+            _isOpen = false;
             OnCloseFlapEvent?.Invoke();
         }
     }
